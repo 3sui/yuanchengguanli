@@ -1,4 +1,4 @@
-# vue-manage-system
+<!-- # vue-manage-system
 
 <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
@@ -194,4 +194,4 @@ import 'element-ui/lib/theme-default/index.css'; // 默认主题
 
 ## License
 
-[MIT](https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE)
+[MIT](https://github.com/lin-xin/vue-manage-system/blob/master/LICENSE) -->
