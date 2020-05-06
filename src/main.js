@@ -1,8 +1,19 @@
+/*
+ * @Author: your name
+ * @Date: 2020-04-28 15:28:09
+ * @LastEditTime: 2020-04-29 10:22:00
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-manage-system\src\main.js
+ */
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import ElementUI from 'element-ui';
 import VueI18n from 'vue-i18n';
+
+import BaiduMap from 'vue-baidu-map'
+
 import { messages } from './components/common/i18n';
 import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 // import './assets/css/theme-green/index.css'; // 浅绿色主题
@@ -11,6 +22,10 @@ import './components/common/directives';
 import 'babel-polyfill';
 
 Vue.config.productionTip = false;
+Vue.use(BaiduMap, {
+    // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+    ak: 'MrbZMmsfnNd32LhWaqtPgCCb7CKi4uvQ'
+  })
 Vue.use(VueI18n);
 Vue.use(ElementUI, {
     size: 'small'

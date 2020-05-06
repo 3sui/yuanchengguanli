@@ -59,97 +59,287 @@ export default {
                 {
                     icon: 'el-icon-lx-home',
                     index: 'dashboard',
-                    title: '系统首页'
+                    title: '主页'
                 },
                 {
-                    icon: 'el-icon-lx-cascades',
-                    index: 'table',
-                    title: '基础表格'
-                },
-                {
-                    icon: 'el-icon-lx-copy',
-                    index: 'tabs',
-                    title: 'tab选项卡'
+                    icon: 'el-icon-lx-location',
+                    index: 'map',
+                    title: '用户地图'
                 },
                 {
                     icon: 'el-icon-lx-calendar',
-                    index: '3',
-                    title: '表单相关',
+                    index: '1',
+                    title: '产品档案',
                     subs: [
                         {
-                            index: 'form',
-                            title: '基本表单'
-                        },
-                        {
-                            index: '3-2',
-                            title: '三级菜单',
+                            index: '1-1',
+                            title: '产品列表',
                             subs: [
                                 {
-                                    index: 'editor',
-                                    title: '富文本编辑器'
+                                    index: '',
+                                    title: '产品导入模板'
                                 },
                                 {
-                                    index: 'markdown',
-                                    title: 'markdown编辑器'
+                                    index: '',
+                                    title: '产品详情'
+                                },
+                                {
+                                    index: '',
+                                    title: '产品添加/编辑'
                                 }
                             ]
                         },
                         {
-                            index: 'upload',
-                            title: '文件上传'
+                            index: '1-2',
+                            title: '维修记录',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '维修记录详情'
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    icon: 'el-icon-lx-emoji',
-                    index: 'icon',
-                    title: '自定义图标'
-                },
-                {
-                    icon: 'el-icon-pie-chart',
-                    index: 'charts',
-                    title: 'schart图表'
-                },
-                {
-                    icon: 'el-icon-rank',
-                    index: '6',
-                    title: '拖拽组件',
+                    icon: 'el-icon-lx-calendar',
+                    index: '2',
+                    title: '远程监控',
                     subs: [
                         {
-                            index: 'drag',
-                            title: '拖拽列表'
+                            index: '2-1',
+                            title: '设备监控',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '测点详情'
+                                }
+                            ]
                         },
                         {
-                            index: 'dialog',
-                            title: '拖拽弹框'
+                            index: '',
+                            title: '报警记录'
                         }
                     ]
                 },
                 {
-                    icon: 'el-icon-lx-global',
-                    index: 'i18n',
-                    title: '国际化功能'
-                },
-                {
-                    icon: 'el-icon-lx-warn',
-                    index: '7',
-                    title: '错误处理',
+                    icon: 'el-icon-lx-calendar',
+                    index: '3',
+                    title: '服务手册',
                     subs: [
                         {
-                            index: 'permission',
-                            title: '权限测试'
-                        },
-                        {
-                            index: '404',
-                            title: '404页面'
+                            index: '3-1',
+                            title: '服务手册列表',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '添加'
+                                },
+                                {
+                                    index: '',
+                                    title: '导入'
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    icon: 'el-icon-lx-redpacket_fill',
-                    index: '/donate',
-                    title: '支持作者'
-                }
+                    icon: 'el-icon-lx-calendar',
+                    index: '4',
+                    title: '分析中心',
+                    subs: [
+                        {
+                            index: '4-1',
+                            title: '企业视图',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '设备分析'
+                                },
+                                {
+                                    index: '',
+                                    title: '行业分析'
+                                },
+                                {
+                                    index: '',
+                                    title: '故障分析'
+                                },
+                                {
+                                    index: '',
+                                    title: '收入分析'
+                                }
+                            ]
+                        },
+                        {
+                            index: '4-2',
+                            title: '管理员视图',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '设备分析'
+                                },
+                                {
+                                    index: '',
+                                    title: '行业分析'
+                                },
+                                {
+                                    index: '',
+                                    title: '故障分析'
+                                },
+                                {
+                                    index: '',
+                                    title: '收入分析'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-calendar',
+                    index: '5',
+                    title: '基础数据管理',
+                    subs: [
+                        {
+                            index: '5-1',
+                            title: '数据字典',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '新增'
+                                }
+                            ]
+                        },
+                        {
+                            index: '5-2',
+                            title: '供应商管理',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '新增/编辑'
+                                }
+                            ]
+                        },
+                        {
+                            index: '5-3',
+                            title: '报警设置/阈值设置',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '新增/编辑'
+                                }
+                            ]
+                        },
+                        {
+                            index: '5-4',
+                            title: '用户信息',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '新增/编辑'
+                                }
+                            ]
+                        },
+                        {
+                            index: '5-5',
+                            title: '角色设置',
+                            subs: [
+                                {
+                                    index: '',
+                                    title: '添加角色'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                // {
+                //     icon: 'el-icon-lx-cascades',
+                //     index: 'table',
+                //     title: '基础表格'
+                // },
+                // {
+                //     icon: 'el-icon-lx-copy',
+                //     index: 'tabs',
+                //     title: 'tab选项卡'
+                // },
+                // {
+                //     icon: 'el-icon-lx-calendar',
+                //     index: '3',
+                //     title: '表单相关',
+                //     subs: [
+                //         {
+                //             index: 'form',
+                //             title: '基本表单'
+                //         },
+                //         {
+                //             index: '3-2',
+                //             title: '三级菜单',
+                //             subs: [
+                //                 {
+                //                     index: 'editor',
+                //                     title: '富文本编辑器'
+                //                 },
+                //                 {
+                //                     index: 'markdown',
+                //                     title: 'markdown编辑器'
+                //                 }
+                //             ]
+                //         },
+                //         {
+                //             index: 'upload',
+                //             title: '文件上传'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-emoji',
+                //     index: 'icon',
+                //     title: '自定义图标'
+                // },
+                // {
+                //     icon: 'el-icon-pie-chart',
+                //     index: 'charts',
+                //     title: 'schart图表'
+                // },
+                // {
+                //     icon: 'el-icon-rank',
+                //     index: '6',
+                //     title: '拖拽组件',
+                //     subs: [
+                //         {
+                //             index: 'drag',
+                //             title: '拖拽列表'
+                //         },
+                //         {
+                //             index: 'dialog',
+                //             title: '拖拽弹框'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-global',
+                //     index: 'i18n',
+                //     title: '国际化功能'
+                // },
+                // {
+                //     icon: 'el-icon-lx-warn',
+                //     index: '7',
+                //     title: '错误处理',
+                //     subs: [
+                //         {
+                //             index: 'permission',
+                //             title: '权限测试'
+                //         },
+                //         {
+                //             index: '404',
+                //             title: '404页面'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-redpacket_fill',
+                //     index: '/donate',
+                //     title: '支持作者'
+                // }
             ]
         };
     },
