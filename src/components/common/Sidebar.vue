@@ -76,15 +76,19 @@ export default {
                             title: '产品列表',
                             subs: [
                                 {
+                                    index: 'productlist',
+                                    title: '产品列表'
+                                },
+                                {
                                     index: '',
                                     title: '产品导入模板'
                                 },
                                 {
-                                    index: '',
+                                    index: 'productDetails',
                                     title: '产品详情'
                                 },
                                 {
-                                    index: '',
+                                    index: 'addnewproduct',
                                     title: '产品添加/编辑'
                                 }
                             ]
@@ -94,7 +98,11 @@ export default {
                             title: '维修记录',
                             subs: [
                                 {
-                                    index: '',
+                                    index: 'MaintenanceRecords',
+                                    title: '维修记录'
+                                },
+                                {
+                                    index: 'MaintenanceDetails',
                                     title: '维修记录详情'
                                 }
                             ]
@@ -110,6 +118,10 @@ export default {
                             index: '2-1',
                             title: '设备监控',
                             subs: [
+                                {
+                                    index: 'EquipmentMonitoring',
+                                    title: '设备监控'
+                                },
                                 {
                                     index: '',
                                     title: '测点详情'
@@ -251,95 +263,95 @@ export default {
                         }
                     ]
                 },
-                // {
-                //     icon: 'el-icon-lx-cascades',
-                //     index: 'table',
-                //     title: '基础表格'
-                // },
-                // {
-                //     icon: 'el-icon-lx-copy',
-                //     index: 'tabs',
-                //     title: 'tab选项卡'
-                // },
-                // {
-                //     icon: 'el-icon-lx-calendar',
-                //     index: '3',
-                //     title: '表单相关',
-                //     subs: [
-                //         {
-                //             index: 'form',
-                //             title: '基本表单'
-                //         },
-                //         {
-                //             index: '3-2',
-                //             title: '三级菜单',
-                //             subs: [
-                //                 {
-                //                     index: 'editor',
-                //                     title: '富文本编辑器'
-                //                 },
-                //                 {
-                //                     index: 'markdown',
-                //                     title: 'markdown编辑器'
-                //                 }
-                //             ]
-                //         },
-                //         {
-                //             index: 'upload',
-                //             title: '文件上传'
-                //         }
-                //     ]
-                // },
-                // {
-                //     icon: 'el-icon-lx-emoji',
-                //     index: 'icon',
-                //     title: '自定义图标'
-                // },
-                // {
-                //     icon: 'el-icon-pie-chart',
-                //     index: 'charts',
-                //     title: 'schart图表'
-                // },
-                // {
-                //     icon: 'el-icon-rank',
-                //     index: '6',
-                //     title: '拖拽组件',
-                //     subs: [
-                //         {
-                //             index: 'drag',
-                //             title: '拖拽列表'
-                //         },
-                //         {
-                //             index: 'dialog',
-                //             title: '拖拽弹框'
-                //         }
-                //     ]
-                // },
-                // {
-                //     icon: 'el-icon-lx-global',
-                //     index: 'i18n',
-                //     title: '国际化功能'
-                // },
-                // {
-                //     icon: 'el-icon-lx-warn',
-                //     index: '7',
-                //     title: '错误处理',
-                //     subs: [
-                //         {
-                //             index: 'permission',
-                //             title: '权限测试'
-                //         },
-                //         {
-                //             index: '404',
-                //             title: '404页面'
-                //         }
-                //     ]
-                // },
-                // {
-                //     icon: 'el-icon-lx-redpacket_fill',
-                //     index: '/donate',
-                //     title: '支持作者'
-                // }
+                {
+                    icon: 'el-icon-lx-cascades',
+                    index: 'table',
+                    title: '基础表格'
+                },
+                {
+                    icon: 'el-icon-lx-copy',
+                    index: 'tabs',
+                    title: 'tab选项卡'
+                },
+                {
+                    icon: 'el-icon-lx-calendar',
+                    index: '6',
+                    title: '表单相关',
+                    subs: [
+                        {
+                            index: 'form',
+                            title: '基本表单'
+                        },
+                        {
+                            index: '6-2',
+                            title: '三级菜单',
+                            subs: [
+                                {
+                                    index: 'editor',
+                                    title: '富文本编辑器'
+                                },
+                                {
+                                    index: 'markdown',
+                                    title: 'markdown编辑器'
+                                }
+                            ]
+                        },
+                        {
+                            index: 'upload',
+                            title: '文件上传'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-emoji',
+                    index: 'icon',
+                    title: '自定义图标'
+                },
+                {
+                    icon: 'el-icon-pie-chart',
+                    index: 'charts',
+                    title: 'schart图表'
+                },
+                {
+                    icon: 'el-icon-rank',
+                    index: '7',
+                    title: '拖拽组件',
+                    subs: [
+                        {
+                            index: 'drag',
+                            title: '拖拽列表'
+                        },
+                        {
+                            index: 'dialog',
+                            title: '拖拽弹框'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-global',
+                    index: 'i18n',
+                    title: '国际化功能'
+                },
+                {
+                    icon: 'el-icon-lx-warn',
+                    index: '8',
+                    title: '错误处理',
+                    subs: [
+                        {
+                            index: 'permission',
+                            title: '权限测试'
+                        },
+                        {
+                            index: '404',
+                            title: '404页面'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-redpacket_fill',
+                    index: '/donate',
+                    title: '支持作者'
+                }
             ]
         };
     },

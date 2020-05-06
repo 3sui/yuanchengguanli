@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-04-28 16:25:21
- * @LastEditTime: 2020-04-29 16:59:24
+ * @LastEditTime: 2020-05-06 09:28:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \远程监控平台\vue-manage-system\src\components\page\map.vue
@@ -162,9 +162,8 @@ export default {
     box-sizing: border-box;
     margin-bottom: 13.3px;
     padding: 15px;
-    border: 1px solid red;
     height: 190px;
-    background-color: #fff;
+    background-color: #eef1f6;
 }
 .info-one {
     /* padding-top: 90px; */
