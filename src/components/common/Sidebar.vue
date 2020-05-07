@@ -165,19 +165,19 @@ export default {
                             title: '企业视图',
                             subs: [
                                 {
-                                    index: '',
+                                    index: 'AnalysisCenter',
                                     title: '设备分析'
                                 },
                                 {
-                                    index: '',
+                                    index: 'AnalysisCenter',
                                     title: '行业分析'
                                 },
                                 {
-                                    index: '',
+                                    index: 'AnalysisCenter',
                                     title: '故障分析'
                                 },
                                 {
-                                    index: '',
+                                    index: 'AnalysisCenter',
                                     title: '收入分析'
                                 }
                             ]
@@ -187,19 +187,19 @@ export default {
                             title: '管理员视图',
                             subs: [
                                 {
-                                    index: '',
+                                    index: 'AnalysisCenter',
                                     title: '设备分析'
                                 },
                                 {
-                                    index: '',
+                                    index: 'AnalysisCenter',
                                     title: '行业分析'
                                 },
                                 {
-                                    index: '',
+                                    index: 'AnalysisCenter',
                                     title: '故障分析'
                                 },
                                 {
-                                    index: '',
+                                    index: 'AnalysisCenter',
                                     title: '收入分析'
                                 }
                             ]
@@ -212,54 +212,54 @@ export default {
                     title: '基础数据管理',
                     subs: [
                         {
-                            index: '5-1',
-                            title: '数据字典',
-                            subs: [
-                                {
-                                    index: '',
-                                    title: '新增'
-                                }
-                            ]
+                            index: 'DataDictionary',
+                            title: '数据字典'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '新增'
+                            //     }
+                            // ]
                         },
                         {
-                            index: '5-2',
-                            title: '供应商管理',
-                            subs: [
-                                {
-                                    index: '',
-                                    title: '新增/编辑'
-                                }
-                            ]
+                            index: 'SupplierManagement',
+                            title: '供应商管理'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '新增/编辑'
+                            //     }
+                            // ]
                         },
                         {
-                            index: '5-3',
-                            title: '报警设置/阈值设置',
-                            subs: [
-                                {
-                                    index: '',
-                                    title: '新增/编辑'
-                                }
-                            ]
+                            index: 'AlarmSetting',
+                            title: '报警设置/阈值设置'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '新增/编辑'
+                            //     }
+                            // ]
                         },
                         {
-                            index: '5-4',
-                            title: '用户信息',
-                            subs: [
-                                {
-                                    index: '',
-                                    title: '新增/编辑'
-                                }
-                            ]
+                            index: 'UserInfo',
+                            title: '用户信息'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '新增/编辑'
+                            //     }
+                            // ]
                         },
                         {
-                            index: '5-5',
-                            title: '角色设置',
-                            subs: [
-                                {
-                                    index: '',
-                                    title: '添加角色'
-                                }
-                            ]
+                            index: 'RoleList',
+                            title: '角色设置'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '添加角色'
+                            //     }
+                            // ]
                         }
                     ]
                 },

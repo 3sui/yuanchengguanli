@@ -73,6 +73,60 @@ export default new Router({
 
 
 
+
+                //基础数据管理
+
+                //数据字典
+                {
+                    path: '/DataDictionary',
+                    component: () => import( /* webpackChunkName: "DataDictionary" */ '../components/view/DataDictionary.vue'),
+                    meta: {
+                        title: '数据字典'
+                    }
+
+                },
+                //供应商管理
+                {
+                    path: '/SupplierManagement',
+                    component: () => import( /* webpackChunkName: "SupplierManagement" */ '../components/view/SupplierManagement.vue'),
+                    meta: {
+                        title: '供应商管理'
+                    }
+                },
+                //报警设置、阈值设置
+                {
+                    path: '/AlarmSetting',
+                    component: () => import( /* webpackChunkName: "AlarmSetting" */ '../components/view/AlarmSetting.vue'),
+                    meta: {
+                        title: '报警设置/阈值设置'
+                    }
+                },
+                //用户信息
+                {
+                    path: '/UserInfo',
+                    component: () => import( /* webpackChunkName: "UserInfo" */ '../components/view/UserInfo.vue'),
+                    meta: {
+                        title: '用户信息'
+                    }
+                },
+
+                //角色设置
+                {
+                    path: '/RoleList',
+                    component: () => import( /* webpackChunkName: "RoleList" */ '../components/view/RoleList.vue'),
+                    meta: {
+                        title: '角色设置'
+                    }
+                },
+                //分析中心
+                {
+                    path: '/AnalysisCenter',
+                    component: () => import( /* webpackChunkName: "AnalysisCenter" */ '../components/view/AnalysisCenter.vue'),
+                    meta: {
+                        title: '分析中心'
+                    }
+                },
+
                 //dome
                 {
                     path: '/icon',
