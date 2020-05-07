@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 16:21:18
- * @LastEditTime: 2020-05-06 16:25:16
+ * @LastEditTime: 2020-05-07 10:50:08
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\view\EquipmentMonitoring.vue
@@ -12,7 +12,7 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 产品列表
+                    <i class="el-icon-lx-cascades"></i> 设备监控
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -38,28 +38,76 @@
                         </div>
                     </el-col>
                     <el-col :span="18">
+                        <div style="text-align: right">
+                            <el-button
+                                type="primary"
+                                icon="el-icon-delete"
+                                class="handle-del mt-10"
+                                @click="visible = true;"
+                            >阈值查看</el-button>
+                        </div>
+
+                        <el-dialog
+                            v-dialogDrag
+                            title="阈值详情"
+                            center
+                            :visible.sync="visible"
+                            width="30%"
+                        >
+                            <div>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>测点名称</th>
+                                            <th>上限值</th>
+                                            <th>下限值</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>主机温度</td>
+                                            <td>234</td>
+                                            <td>123</td>
+                                        </tr>
+                                        <tr>
+                                            <td>主机温度</td>
+                                            <td>234</td>
+                                            <td>123</td>
+                                        </tr>
+                                        <tr>
+                                            <td>主机温度</td>
+                                            <td>234</td>
+                                            <td>123</td>
+                                        </tr>
+                                        <tr>
+                                            <td>主机温度</td>
+                                            <td>234</td>
+                                            <td>123</td>
+                                        </tr>
+                                        <tr>
+                                            <td>主机温度</td>
+                                            <td>234</td>
+                                            <td>123</td>
+                                        </tr>
+                                        <tr>
+                                            <td>主机温度</td>
+                                            <td>234</td>
+                                            <td>123</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <span slot="footer" class="dialog-footer">
+                                <!-- <el-button @click="visible = false">取 消</el-button> -->
+                                <el-button type="primary" @click="visible = false">确 定</el-button>
+                            </span>
+                        </el-dialog>
                         <div class="product-status">
-                            <el-select
-                                v-model="query.address"
-                                placeholder="请选择省"
-                                class="handle-select mr10"
-                            >
-                                <el-option key="1" label="江苏省" value="江苏省"></el-option>
-                            </el-select>
-                            <el-select
-                                v-model="query.address"
-                                placeholder="请选择市"
-                                class="handle-select mr10"
-                            >
-                                <el-option key="1" label="常州市" value="常州市"></el-option>
-                            </el-select>
-                            <el-select
-                                v-model="query.address"
-                                placeholder="请选择区"
-                                class="handle-select mr10"
-                            >
-                                <el-option key="1" label="天宁区" value="天宁区"></el-option>
-                            </el-select>
+                            <el-input
+                                v-model="query.name"
+                                placeholder="请输入关键字"
+                                class="handle-input mr10"
+                            ></el-input>
                             <el-select
                                 v-model="query.address"
                                 placeholder="设备种类"
@@ -77,29 +125,21 @@
                             <el-select
                                 v-model="query.address"
                                 placeholder="开关机"
-                                class="handle-select"
+                                class="handle-select mr10"
                             >
                                 <el-option key="1" label="开机" value="开机"></el-option>
                             </el-select>
-                        </div>
-                        <div class="product-status">
-                            <el-input
-                                v-model="query.name"
-                                placeholder="请输入关键字"
-                                class="handle-input mr10"
-                            ></el-input>
-                            <div class="block">
-                                <el-date-picker
-                                    v-model="value2"
-                                    type="daterange"
-                                    align="right"
-                                    unlink-panels
-                                    range-separator="至"
-                                    start-placeholder="开始日期"
-                                    end-placeholder="结束日期"
-                                    :picker-options="pickerOptions"
-                                ></el-date-picker>
-                            </div>
+                            <el-date-picker
+                                class="mr10"
+                                v-model="value2"
+                                type="daterange"
+                                align="right"
+                                unlink-panels
+                                range-separator="至"
+                                start-placeholder="开始日期"
+                                end-placeholder="结束日期"
+                                :picker-options="pickerOptions"
+                            ></el-date-picker>
                             <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
                         </div>
                     </el-col>
@@ -115,25 +155,39 @@
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
-                <el-table-column prop="name" label="客户名称"></el-table-column>
 
                 <el-table-column prop="name" label="设备ID"></el-table-column>
-                <el-table-column prop="name" label="设备种类"></el-table-column>
+
                 <el-table-column prop="name" label="设备名称"></el-table-column>
+                <el-table-column prop="name" label="设备种类"></el-table-column>
                 <el-table-column prop="name" label="型号描述"></el-table-column>
                 <el-table-column prop="name" label="出厂编号"></el-table-column>
-                <el-table-column prop="name" label="服务提出日期"></el-table-column>
-                <el-table-column prop="name" label="维修时间"></el-table-column>
+                <el-table-column prop="name" label="客户名称"></el-table-column>
 
-                <el-table-column prop="name" label="故障类型"></el-table-column>
-                <el-table-column prop="name" label="故障现象"></el-table-column>
-                <el-table-column prop="name" label="故障部件供应商"></el-table-column>
-                <el-table-column prop="name" label="是否更换零部件"></el-table-column>
-                <el-table-column prop="name" label="更换部件供应商"></el-table-column>
-                <el-table-column prop="name" label="维修费用（元）"></el-table-column>
-                <el-table-column prop="name" label="备注"></el-table-column>
-
-                <el-table-column prop="address" label="维修人"></el-table-column>
+                <el-table-column prop="name" label="主机温度(℃)"></el-table-column>
+                <el-table-column prop="name" label="水箱温度(℃)"></el-table-column>
+                <el-table-column prop="name" label="进口温度(℃)"></el-table-column>
+                <el-table-column prop="name" label="出口温度(℃)"></el-table-column>
+                <el-table-column prop="name" label="压力"></el-table-column>
+                <el-table-column prop="name" label="压差"></el-table-column>
+                <el-table-column prop="name" label="电机转速(转/分)"></el-table-column>
+                <el-table-column prop="name" label="电流(A)"></el-table-column>
+                <el-table-column prop="name" label="主油箱液位(mm)"></el-table-column>
+                <el-table-column prop="name" label="主油箱温度(℃)"></el-table-column>
+                <el-table-column prop="name" label="供油管路温度(℃)"></el-table-column>
+                <el-table-column prop="name" label="紧急过滤器压差"></el-table-column>
+                <el-table-column prop="name" label="双筒过滤器压差"></el-table-column>
+                <el-table-column prop="name" label="高位油箱液位(mm)"></el-table-column>
+                <el-table-column prop="name" label="控制油压力"></el-table-column>
+                <el-table-column prop="name" label="润滑油出口压力"></el-table-column>
+                <el-table-column prop="name" label="电机泵组震动"></el-table-column>
+                <el-table-column prop="name" label="电机电流"></el-table-column>
+                <el-table-column prop="name" label="主油箱油品分析"></el-table-column>
+                <el-table-column prop="name" label="故障代码"></el-table-column>
+                <el-table-column prop="name" label="运行时长(h)"></el-table-column>
+                <el-table-column prop="name" label="工作状态"></el-table-column>
+                <el-table-column prop="name" label="开关机"></el-table-column>
+                <el-table-column prop="name" label="更新日期"></el-table-column>
 
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
@@ -187,6 +241,7 @@ export default {
     name: 'basetable',
     data() {
         return {
+            visible: false,
             pickerOptions: {
                 shortcuts: [
                     {
@@ -336,6 +391,19 @@ export default {
 }
 .mt-10 {
     margin-bottom: 10px;
+}
+th {
+    background-color: #eef1f6;
+    padding: 5px 15px;
+}
+td {
+    padding: 5px 15px;
+}
+table {
+    margin: 0 auto;
+    width: 90%;
+    border: 1px solid #cdcdcd;
+    text-align: center;
 }
 </style>
 

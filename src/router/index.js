@@ -70,6 +70,55 @@ export default new Router({
                         title: '设备监控'
                     }
                 },
+                {
+                    path: '/MeasuringPointDetails',
+                    component: () => import( /* webpackChunkName: "MeasuringPointDetails" */ '../components/view/MeasuringPointDetails.vue'),
+                    meta: {
+                        title: '测点详情'
+                    }
+                },
+                {
+                    path: '/AlarmRecord',
+                    component: () => import( /* webpackChunkName: "AlarmRecord" */ '../components/view/AlarmRecord.vue'),
+                    meta: {
+                        title: '报警记录'
+                    }
+                },
+                {
+                    path: '/ServiceBooklet',
+                    component: () => import( /* webpackChunkName: "ServiceBooklet" */ '../components/view/ServiceBooklet.vue'),
+                    meta: {
+                        title: '服务手册'
+                    }
+                },
+                {
+                    path: '/AddBooklet',
+                    component: () => import( /* webpackChunkName: "AddBooklet" */ '../components/view/AddBooklet.vue'),
+                    meta: {
+                        title: '添加服务手册'
+                    }
+                },
+                {
+                    path: '/ImportingBooklet',
+                    component: () => import( /* webpackChunkName: "ImportingBooklet" */ '../components/view/ImportingBooklet.vue'),
+                    meta: {
+                        title: '导入服务手册'
+                    }
+                },
+                {
+                    path: '/EnterpriseView',
+                    component: () => import( /* webpackChunkName: "EnterpriseView" */ '../components/view/EnterpriseView.vue'),
+                    meta: {
+                        title: '企业视图'
+                    }
+                },
+                {
+                    path: '/AdminView',
+                    component: () => import( /* webpackChunkName: "AdminView" */ '../components/view/AdminView.vue'),
+                    meta: {
+                        title: '管理员视图'
+                    }
+                },
 
 
 
