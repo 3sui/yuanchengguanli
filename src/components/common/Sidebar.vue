@@ -123,13 +123,13 @@ export default {
                                     title: '设备监控'
                                 },
                                 {
-                                    index: '',
+                                    index: 'MeasuringPointDetails',
                                     title: '测点详情'
                                 }
                             ]
                         },
                         {
-                            index: '',
+                            index: 'AlarmRecord',
                             title: '报警记录'
                         }
                     ]
@@ -144,11 +144,15 @@ export default {
                             title: '服务手册列表',
                             subs: [
                                 {
-                                    index: '',
+                                    index: 'ServiceBooklet',
+                                    title: '服务手册列表'
+                                },
+                                {
+                                    index: 'AddBooklet',
                                     title: '添加'
                                 },
                                 {
-                                    index: '',
+                                    index: 'ImportingBooklet',
                                     title: '导入'
                                 }
                             ]
@@ -161,48 +165,13 @@ export default {
                     title: '分析中心',
                     subs: [
                         {
-                            index: '4-1',
-                            title: '企业视图',
-                            subs: [
-                                {
-                                    index: '',
-                                    title: '设备分析'
-                                },
-                                {
-                                    index: '',
-                                    title: '行业分析'
-                                },
-                                {
-                                    index: '',
-                                    title: '故障分析'
-                                },
-                                {
-                                    index: '',
-                                    title: '收入分析'
-                                }
-                            ]
+                            index: 'EnterpriseView',
+                            title: '企业视图'
                         },
                         {
-                            index: '4-2',
+                            index: 'AdminView',
                             title: '管理员视图',
-                            subs: [
-                                {
-                                    index: '',
-                                    title: '设备分析'
-                                },
-                                {
-                                    index: '',
-                                    title: '行业分析'
-                                },
-                                {
-                                    index: '',
-                                    title: '故障分析'
-                                },
-                                {
-                                    index: '',
-                                    title: '收入分析'
-                                }
-                            ]
+                            
                         }
                     ]
                 },
@@ -263,6 +232,9 @@ export default {
                         }
                     ]
                 },
+
+                //dome
+
                 {
                     icon: 'el-icon-lx-cascades',
                     index: 'table',
