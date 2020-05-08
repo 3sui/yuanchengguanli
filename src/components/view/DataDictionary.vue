@@ -39,15 +39,15 @@
                 <!-- 序号 -->
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                 <!-- 分类 -->
-                <el-table-column prop="classification" label="分类"></el-table-column>
+                <el-table-column prop="classification" label="分类"  align="center"></el-table-column>
                 <!-- 名称 -->
-                <el-table-column prop="name" label="名称"></el-table-column>
+                <el-table-column prop="names" label="名称"  align="center"></el-table-column>
                 <!-- 描述 -->
-                <el-table-column prop="description" label="描述"></el-table-column>
+                <el-table-column prop="description" label="描述"  align="center"></el-table-column>
                 <!-- 创建日期 -->
-                <el-table-column prop="createtime" label="创建日期"></el-table-column>
+                <el-table-column prop="createtime" label="创建日期"  align="center"></el-table-column>
                 <!-- 创建人 -->
-                <el-table-column prop="createuser" label="创建人"></el-table-column>
+                <el-table-column prop="createuser" label="创建人"  align="center"></el-table-column>
 
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">

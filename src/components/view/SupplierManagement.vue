@@ -81,25 +81,25 @@
                 <!-- 序号 -->
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                 <!-- 供应商编号 -->
-                <el-table-column prop="supplierID" label="供应商编号"></el-table-column>
+                <el-table-column prop="supplierID" label="供应商编号" align="center"></el-table-column>
                 <!-- 供应商名称 -->
-                <el-table-column prop="supplierName" label="供应商名称"></el-table-column>
+                <el-table-column prop="supplierName" label="供应商名称" align="center"></el-table-column>
                 <!-- 主要联系人姓名 -->
-                <el-table-column prop="contactName" label="主要联系人姓名"></el-table-column>
+                <el-table-column prop="contactName" label="主要联系人姓名" align="center"></el-table-column>
                 <!-- 手机号码 -->
-                <el-table-column prop="phone" label="手机号码"></el-table-column>
+                <el-table-column prop="phone" label="手机号码" align="center"></el-table-column>
                 <!-- 邮箱 -->
-                <el-table-column prop="email" label="邮箱"></el-table-column>
+                <el-table-column prop="email" label="邮箱" align="center"></el-table-column>
                 <!-- 所属行业大类 -->
-                <el-table-column prop="industry" label="所属行业大类"></el-table-column>
+                <el-table-column prop="industry" label="所属行业大类" align="center"></el-table-column>
                 <!-- 省 -->
-                <el-table-column prop="province" label="省"></el-table-column>
+                <el-table-column prop="province" label="省" align="center"></el-table-column>
                 <!-- 市 -->
-                <el-table-column prop="city" label="市"></el-table-column>
+                <el-table-column prop="city" label="市" align="center"></el-table-column>
                 <!-- 区县 -->
-                <el-table-column prop="district" label="区县"></el-table-column>
+                <el-table-column prop="district" label="区县" align="center"></el-table-column>
                 <!-- 创建日期 -->
-                <el-table-column prop="createTime" label="创建日期"></el-table-column>
+                <el-table-column prop="createtime" label="创建日期" align="center"></el-table-column>
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">

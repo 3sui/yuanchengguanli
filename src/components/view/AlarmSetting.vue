@@ -69,19 +69,19 @@
                 <!-- 序号 -->
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                 <!-- 设备名称 -->
-                <el-table-column prop="deviceName" label="设备名称"></el-table-column>
+                <el-table-column prop="deviceName" label="设备名称" align="center"></el-table-column>
                 <!-- 设备种类 -->
-                <el-table-column prop="deviceType" label="设备种类"></el-table-column>
+                <el-table-column prop="deviceType" label="设备种类" align="center"></el-table-column>
                 <!-- 设备型号 -->
-                <el-table-column prop="deviceModel" label="设备型号"></el-table-column>
+                <el-table-column prop="deviceModel" label="设备型号" align="center"></el-table-column>
                 <!-- 测点名称 -->
-                <el-table-column prop="pointName" label="测点名称"></el-table-column>
+                <el-table-column prop="pointName" label="测点名称" align="center"></el-table-column>
                 <!-- 上限值 -->
-                <el-table-column prop="upperlimit" label="上限值"></el-table-column>
+                <el-table-column prop="upperlimit" label="上限值" align="center"></el-table-column>
                 <!-- 下限值 -->
-                <el-table-column prop="lowerlimit" label="下限值"></el-table-column>
+                <el-table-column prop="lowerlimit" label="下限值" align="center"></el-table-column>
                 <!-- 变更日期 -->
-                <el-table-column prop="updatetime" label="变更日期"></el-table-column>
+                <el-table-column prop="updatetime" label="变更日期" align="center"></el-table-column>
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">

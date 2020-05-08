@@ -69,25 +69,25 @@
                 <!-- 序号 -->
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                 <!-- 用户账号 -->
-                <el-table-column prop="account" label="用户账号"></el-table-column>
+                <el-table-column prop="account" label="用户账号" align="center"></el-table-column>
                 <!-- 会员姓名 -->
-                <el-table-column prop="userName" label="会员姓名"></el-table-column>
+                <el-table-column prop="userName" label="会员姓名" align="center"></el-table-column>
                 <!-- 用户组 -->
-                <el-table-column prop="userTeam" label="用户组"></el-table-column>
+                <el-table-column prop="userTeam" label="用户组" align="center"></el-table-column>
                 <!-- 企业名称 -->
-                <el-table-column prop="company" label="企业名称"></el-table-column>
+                <el-table-column prop="company" label="企业名称" align="center"></el-table-column>
                 <!-- 手机号码 -->
-                <el-table-column prop="phone" label="手机号码"></el-table-column>
+                <el-table-column prop="phone" label="手机号码" align="center"></el-table-column>
                 <!-- 邮箱 -->
-                <el-table-column prop="email" label="邮箱"></el-table-column>
+                <el-table-column prop="email" label="邮箱" align="center"></el-table-column>
                 <!-- 注册日期 -->
-                <el-table-column prop="registrationDate" label="注册日期"></el-table-column>
+                <el-table-column prop="registrationDate" label="注册日期" align="center"></el-table-column>
                 <!-- 所属行业大类 -->
-                <el-table-column prop="industry" label="所属行业大类"></el-table-column>
+                <el-table-column prop="industry" label="所属行业大类" align="center"></el-table-column>
                 <!-- 供应设备种类 -->
-                <el-table-column prop="deviceType" label="供应设备种类"></el-table-column>
+                <el-table-column prop="deviceType" label="供应设备种类" align="center"></el-table-column>
                 <!-- 所属角色 -->
-                <el-table-column prop="role" label="所属角色"></el-table-column>
+                <el-table-column prop="role" label="所属角色" align="center"></el-table-column>
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">

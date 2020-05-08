@@ -40,15 +40,15 @@
                 <!-- 序号 -->
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                 <!-- 角色 -->
-                <el-table-column prop="role" label="角色"></el-table-column>
+                <el-table-column prop="role" label="角色" align="center"></el-table-column>
                 <!-- 角色描述 -->
-                <el-table-column prop="roleDescription" label="角色描述"></el-table-column>
+                <el-table-column prop="roleDescription" label="角色描述" align="center"></el-table-column>
                 <!-- 用户 -->
-                <el-table-column prop="userList" label="用户"></el-table-column>
+                <el-table-column prop="userList" label="用户" align="center"></el-table-column>
                 <!-- 用户数 -->
-                <el-table-column prop="userSum" label="用户数"></el-table-column>
+                <el-table-column prop="userSum" label="用户数" align="center"></el-table-column>
                 <!-- 创建时间 -->
-                <el-table-column prop="createTime" label="创建时间"></el-table-column>
+                <el-table-column prop="createtime" label="创建时间" align="center"></el-table-column>
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
