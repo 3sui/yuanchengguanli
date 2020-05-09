@@ -9,7 +9,12 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button type="primary" class="handle-del mr10" @click="delAllSelection" icon="el-icon-plus">新增</el-button>
+                <el-button
+                    type="primary"
+                    class="handle-del mr10"
+                    @click="addUser"
+                    icon="el-icon-plus"
+                >新增</el-button>
             </div>
             <div class="handle-box">
                 <el-row>
@@ -174,12 +179,19 @@ export default {
     name: 'UserInfo',
     data() {
         return {
-            formInline:{
-
-            },
+            formInline: {},
             query: {
-                address: '',
-                name: '',
+                id: 0,
+                account: '',
+                userName: '',
+                userTeam: '',
+                company: '',
+                phone: '',
+                email: '',
+                registrationDate: '',
+                industry: '',
+                deviceType: '',
+                role: '',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -201,7 +213,7 @@ export default {
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
-                this.tableData = res.list;
+                this.tableData = res.userlist;
                 this.pageTotal = res.pageTotal || 50;
             });
         },
@@ -247,6 +259,10 @@ export default {
             this.editVisible = false;
             this.$message.success(`修改第 ${this.idx + 1} 行成功`);
             this.$set(this.tableData, this.idx, this.form);
+        },
+        //新增用户
+        addUser() {
+            this.editVisible = true;
         },
         // 分页导航
         handlePageChange(val) {

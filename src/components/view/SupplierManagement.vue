@@ -9,14 +9,29 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button type="primary" class="handle-del mr10" @click="AddSupplier" icon="el-icon-plus">新增</el-button>
-                <el-button type="primary" class="handle-del mr10" @click="ImportSuppliers" icon="el-icon-upload2">导入供应商</el-button>
-                <el-button type="primary" class="handle-del mr10" @click="importParts" icon="el-icon-upload2">导入零部件</el-button>
+                <el-button
+                    type="primary"
+                    class="handle-del mr10"
+                    @click="AddSupplier"
+                    icon="el-icon-plus"
+                >新增</el-button>
+                <el-button
+                    type="primary"
+                    class="handle-del mr10"
+                    @click="ImportSuppliers"
+                    icon="el-icon-upload2"
+                >导入供应商</el-button>
+                <el-button
+                    type="primary"
+                    class="handle-del mr10"
+                    @click="importParts"
+                    icon="el-icon-upload2"
+                >导入零部件</el-button>
             </div>
             <div class="handle-box">
                 <el-row>
                     <el-col :span="3">
-                        <el-select v-model="value" placeholder="请选择省" >
+                        <el-select v-model="value" placeholder="请选择省">
                             <el-option
                                 v-for="item in options"
                                 :key="item.value"
@@ -46,20 +61,19 @@
                         </el-select>
                     </el-col>
                     <el-col :span="3">
-                        <el-input v-model="query.name" placeholder="名称" ></el-input>
+                        <el-input v-model="query.name" placeholder="名称"></el-input>
                     </el-col>
-                     <el-col :span="2">
+                    <el-col :span="2">
                         <div class="demonstration">创建日期</div>
                     </el-col>
                     <el-col :span="8">
                         <el-date-picker
-                                v-model="value1"
-                                type="daterange"
-                                range-separator="至"
-                                start-placeholder="开始日期"
-                                end-placeholder="结束日期"
-                            ></el-date-picker>
-              
+                            v-model="value1"
+                            type="daterange"
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                        ></el-date-picker>
                     </el-col>
                     <el-col :span="2">
                         <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
@@ -139,7 +153,7 @@
         <el-dialog title="新增/编辑" :visible.sync="editVisible" width="30%">
             <el-form ref="form" :model="form" label-width="150px">
                 <el-form-item label="*供应商名称">
-                   <el-input v-model="form.address"></el-input>
+                    <el-input v-model="form.address"></el-input>
                 </el-form-item>
                 <el-form-item label="*所属行业大类">
                     <el-input v-model="form.address"></el-input>
@@ -160,9 +174,8 @@
                     <el-input v-model="form.address"></el-input>
                 </el-form-item>
             </el-form>
-             <el-divider content-position="left">添加零部件</el-divider>
-             <el-form ref="form" :model="form" label-width="150px">
-               
+            <el-divider content-position="left">添加零部件</el-divider>
+            <el-form ref="form" :model="form" label-width="150px">
                 <el-form-item label="*零部件名称">
                     <el-input v-model="form.address"></el-input>
                 </el-form-item>
@@ -170,10 +183,10 @@
                     <el-input v-model="form.address"></el-input>
                 </el-form-item>
                 <el-form-item label="继续添加">
-                   <i data-v-41aaf3b9="" class="el-icon-lx-add"></i>
+                    <i data-v-41aaf3b9 class="el-icon-lx-add"></i>
                 </el-form-item>
             </el-form>
-               <el-divider></el-divider>
+            <el-divider></el-divider>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="editVisible = false">取 消</el-button>
                 <el-button type="primary" @click="saveEdit">确 定</el-button>
@@ -189,8 +202,17 @@ export default {
     data() {
         return {
             query: {
-                address: '',
-                name: '',
+                id: 0,
+                supplierID: '001',
+                supplierName: '航天云网',
+                contactName: '张三',
+                phone: '1562839294',
+                email: 'sssss@qq.com',
+                industry: '制造业',
+                province: '江苏省',
+                city: '常州市',
+                district: '新北区',
+                createtime: '2020-05-09 09:25:26',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -212,7 +234,7 @@ export default {
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
-                this.tableData = res.list;
+                this.tableData = res.supplier;
                 this.pageTotal = res.pageTotal || 50;
             });
         },
@@ -259,6 +281,9 @@ export default {
             this.$message.success(`修改第 ${this.idx + 1} 行成功`);
             this.$set(this.tableData, this.idx, this.form);
         },
+        AddSupplier(){
+ this.editVisible = true;
+        },
         // 分页导航
         handlePageChange(val) {
             this.$set(this.query, 'pageIndex', val);
@@ -277,7 +302,6 @@ export default {
     width: 120px;
 }
 
-
 .table {
     width: 100%;
     font-size: 14px;
@@ -295,12 +319,8 @@ export default {
     height: 40px;
 }
 
-.demonstration{
+.demonstration {
     text-align: center;
     padding: 3px 0;
 }
-
-
-
-
 </style>
