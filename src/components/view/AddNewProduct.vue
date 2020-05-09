@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 14:19:13
- * @LastEditTime: 2020-05-06 14:43:51
+ * @LastEditTime: 2020-05-09 17:29:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\view\AddNewProduct.vue
@@ -20,39 +20,39 @@
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="120px">
                     <el-form-item label="设备ID">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.DeviceID"></el-input>
                     </el-form-item>
                     <el-form-item label="设备种类">
-                        <el-select v-model="form.region" placeholder="请选择">
-                            <el-option key="bbk" label="干燥设备" value="bbk"></el-option>
-                            <el-option key="xtc" label="液压设备" value="xtc"></el-option>
+                        <el-select v-model="form.DeviceClass" placeholder="请选择">
+                            <el-option label="干燥设备" value="干燥设备"></el-option>
+                            <el-option label="液压设备" value="液压设备"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="设备名称">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.DeviceName"></el-input>
                     </el-form-item>
                     <el-form-item label="型号描述">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.Model"></el-input>
                     </el-form-item>
                     <el-form-item label="出厂编号">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.SerialNumber"></el-input>
                     </el-form-item>
                     <el-form-item label="所属客户名称">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.CustomerName"></el-input>
                     </el-form-item>
                     <el-form-item label="客户行业">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.CustomerIndustry"></el-input>
                     </el-form-item>
                     <el-form-item label="安装地址">
                         <el-cascader
                             size="large"
                             :options="options"
-                            v-model="selectedOptions"
+                            v-model="form.selectedOptions"
                             @change="handleChange"
                         ></el-cascader>
                     </el-form-item>
                     <el-form-item label="详细地址">
-                        <el-input v-model="form.name"></el-input>
+                        <el-input v-model="form.Address"></el-input>
                     </el-form-item>
 
                     <el-form-item>
@@ -73,21 +73,24 @@ export default {
         return {
             options: provinceAndCityData,
             form: {
-                name: '',
-                region: '',
-                date1: '',
-                date2: '',
-                delivery: true,
-                type: ['步步高'],
-                resource: '小天才',
-                desc: '',
-                options: []
+                DeviceID: '',
+                DeviceClass: '',
+                DeviceName: '',
+                Model: '',
+                SerialNumber: '',
+                CustomerName: '',
+                CustomerIndustry: '',
+                Address: '',
+                selectedOptions: ''
             }
         };
     },
     methods: {
         onSubmit() {
             this.$message.success('提交成功！');
+        },
+        handleChange() {
+            window.console.log(this.selectedOptions);
         }
     }
 };
