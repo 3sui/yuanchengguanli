@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 09:29:23
- * @LastEditTime: 2020-05-06 10:51:37
+ * @LastEditTime: 2020-05-08 17:15:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\page\ProductList.vue
@@ -22,9 +22,9 @@
                         <div class="mt-10">
                             <el-button
                                 type="primary"
-                                icon="el-icon-delete"
+                                icon="el-icon-lx-add"
                                 class="handle-del mr10"
-                                @click="delAllSelection"
+                                @click="$router.push('./addnewproduct')"
                             >新增</el-button>
                         </div>
                         <div>
@@ -39,42 +39,42 @@
                     <el-col :span="18">
                         <div class="product-status">
                             <el-select
-                                v-model="query.address"
+                                v-model="query.province"
                                 placeholder="请选择省"
                                 class="handle-select mr10"
                             >
                                 <el-option key="1" label="江苏省" value="江苏省"></el-option>
                             </el-select>
                             <el-select
-                                v-model="query.address"
+                                v-model="query.city"
                                 placeholder="请选择市"
                                 class="handle-select mr10"
                             >
                                 <el-option key="1" label="常州市" value="常州市"></el-option>
                             </el-select>
                             <el-select
-                                v-model="query.address"
+                                v-model="query.county"
                                 placeholder="请选择区"
                                 class="handle-select mr10"
                             >
                                 <el-option key="1" label="天宁区" value="天宁区"></el-option>
                             </el-select>
                             <el-select
-                                v-model="query.address"
+                                v-model="query.kind"
                                 placeholder="设备种类"
                                 class="handle-select mr10"
                             >
                                 <el-option key="1" label="干燥设备" value="干燥设备"></el-option>
                             </el-select>
                             <el-select
-                                v-model="query.address"
+                                v-model="query.status"
                                 placeholder="工作状态"
                                 class="handle-select mr10"
                             >
                                 <el-option key="1" label="运行中" value="运行中"></el-option>
                             </el-select>
                             <el-select
-                                v-model="query.address"
+                                v-model="query.switch"
                                 placeholder="开关机"
                                 class="handle-select"
                             >
@@ -83,13 +83,13 @@
                         </div>
                         <div class="product-status">
                             <el-input
-                                v-model="query.name"
+                                v-model="query.msg"
                                 placeholder="请输入关键字"
                                 class="handle-input mr10"
                             ></el-input>
                             <div class="block">
                                 <el-date-picker
-                                    v-model="value2"
+                                    v-model="query.date"
                                     type="daterange"
                                     align="right"
                                     unlink-panels
@@ -113,21 +113,21 @@
                 @selection-change="handleSelectionChange"
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
-                <el-table-column prop="name" label="设备ID"></el-table-column>
-                <el-table-column prop="name" label="设备名称"></el-table-column>
-                <el-table-column prop="name" label="设备种类"></el-table-column>
-                <el-table-column prop="name" label="型号描述"></el-table-column>
-                <el-table-column prop="name" label="出厂编号"></el-table-column>
-                <el-table-column prop="name" label="客户名称"></el-table-column>
-                <el-table-column prop="name" label="客户行业"></el-table-column>
-                <el-table-column prop="name" label="安装地址(省)"></el-table-column>
-                <el-table-column prop="name" label="安装地址(市)"></el-table-column>
-                <el-table-column prop="name" label="安装地址(区)"></el-table-column>
-                <el-table-column prop="name" label="安装地址(详情)"></el-table-column>
+                <el-table-column prop="id" label="序号" width="55" align="center" type="index"></el-table-column>
+                <el-table-column prop="DeviceID" label="设备ID"></el-table-column>
+                <el-table-column prop="DeviceName" label="设备名称"></el-table-column>
+                <el-table-column prop="DeviceClass" label="设备种类"></el-table-column>
+                <el-table-column prop="Model" label="型号描述"></el-table-column>
+                <el-table-column prop="SerialNumber" label="出厂编号"></el-table-column>
+                <el-table-column prop="CustomerName" label="客户名称"></el-table-column>
+                <el-table-column prop="CustomerIndustry" label="客户行业"></el-table-column>
+                <el-table-column prop="Province" label="安装地址(省)"></el-table-column>
+                <el-table-column prop="City" label="安装地址(市)"></el-table-column>
+                <el-table-column prop="District" label="安装地址(区)"></el-table-column>
+                <el-table-column prop="Address" label="安装地址(详情)"></el-table-column>
                 <el-table-column prop="name" label="运行时长(h)"></el-table-column>
 
-                <el-table-column label="账户余额">
+                <!-- <el-table-column label="账户余额">
                     <template slot-scope="scope">￥{{scope.row.money}}</template>
                 </el-table-column>
                 <el-table-column label="头像(查看大图)" align="center">
@@ -139,7 +139,7 @@
                         ></el-image>
                     </template>
                 </el-table-column>
-                <el-table-column prop="address" label="地址"></el-table-column>
+                <el-table-column prop="address" label="地址"></el-table-column>-->
                 <el-table-column label="状态" align="center">
                     <template slot-scope="scope">
                         <el-tag
@@ -164,6 +164,11 @@
                             icon="el-icon-edit"
                             @click="handleEdit(scope.$index, scope.row)"
                         >编辑</el-button>
+                        <el-button
+                            type="text"
+                            icon="el-icon-view"
+                            @click="handleDetail(scope.$index, scope.row)"
+                        >详情</el-button>
                         <el-button
                             type="text"
                             icon="el-icon-delete"
@@ -240,15 +245,19 @@ export default {
                     }
                 ]
             },
-            value1: '',
-            value2: '',
             query: {
-                address: '',
-                name: '',
-                pageIndex: 1,
-                pageSize: 10
+                province: '', //省份
+                city: '', //市
+                county: '', //区县
+                kind: '', //种类
+                status: '', //状态
+                switch: '', //开关机
+                msg: '', //关键字
+                date: '', //筛选日期
+                pageIndex: 1, //当前页数
+                pageSize: 10 //每页显示个数选择器的选项设置
             },
-            tableData: [],
+            tableData: [], //设备列表的数据
             multipleSelection: [],
             delList: [],
             editVisible: false,
@@ -262,18 +271,26 @@ export default {
         this.getData();
     },
     methods: {
-        // 获取 easy-mock 的模拟数据
+        // 获取 设备列表数据
         getData() {
-            fetchData(this.query).then(res => {
-                console.log(res);
-                this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
-            });
+            // window.console.log(axios);
+            axios
+                .get('/getProductList')
+                .then(res => {
+                    window.console.log(res);
+                    if (res.status === 200) {
+                        this.tableData = res.data;
+                    } else {
+                        window.console.log('服务器错误');
+                    }
+                })
+                .catch();
         },
         // 触发搜索按钮
         handleSearch() {
             this.$set(this.query, 'pageIndex', 1);
             this.getData();
+            window.console.log(this.query);
         },
         // 删除操作
         handleDelete(index, row) {
@@ -286,6 +303,15 @@ export default {
                     this.tableData.splice(index, 1);
                 })
                 .catch(() => {});
+        },
+        // 查看详情
+        handleDetail(index, row) {
+            this.$router.push({
+                path: './ProductDetails',
+                params: {
+                    id: row
+                }
+            });
         },
         // 多选操作
         handleSelectionChange(val) {
