@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 10:56:10
- * @LastEditTime: 2020-05-06 14:14:05
+ * @LastEditTime: 2020-05-09 17:02:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\view\ProductDetails.vue
@@ -12,39 +12,46 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-copy"></i> 产品详情
+                    <i class="el-icon-lx-copy"></i> 产品列表
                 </el-breadcrumb-item>
+                <el-breadcrumb-item>设备详情</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
-            <el-button type="primary" icon="el-icon-delete" class="handle-del mr10 mb-30">编辑</el-button>
-            <el-button type="primary" icon="el-icon-delete" class="handle-del mr10">返回</el-button>
+            <el-button
+                type="primary"
+                icon="el-icon-lx-back"
+                class="handle-del mr10"
+                @click="$router.go(-1)"
+            >返回</el-button>
+            <!-- <el-button type="primary" icon="el-icon-edit" class="handle-del mr10 mb-30">编辑</el-button> -->
+
             <div class="plugins-tips">设备信息</div>
             <el-row :gutter="20" class="mb-30">
                 <el-col :span="12">
                     <div class="ml-50">
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
+                        <p>设备ID: {{tableData.DeviceID}}</p>
+                        <p>工作状态: {{tableData.status}}</p>
+                        <p>设备名称: {{tableData.DeviceName}}</p>
+                        <p>型号描述: {{tableData.Model}}</p>
+                        <p>设备种类: {{tableData.DeviceClass}}</p>
+                        <p>经度: {{}}</p>
+                        <p>报警次数: {{tableData.AlertTimes}}</p>
+                        <p>信号位地址: {{}}</p>
+                        <p>上次维修日期: {{tableData.LastMaintenance}}</p>
+                        <p>创建人: {{}}</p>
+                        <p>建档日期: {{}}</p>
                     </div>
                 </el-col>
                 <el-col :span="12">
                     <div class="ml-50">
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
-                        <p>设备ID:{{}}</p>
+                        <p>出厂编号:{{tableData.SerialNumber}}</p>
+                        <p>运行时长(h):{{tableData.Duration}}</p>
+                        <p>开关机:{{tableData.switch}}</p>
+                        <p>客户名称:{{tableData.CustomerName}}</p>
+                        <p>安装地址:{{tableData.Address}}</p>
+                        <p>纬度:{{}}</p>
+                        <p>客户行业:{{tableData.CustomerIndustry}}</p>
                         <img
                             width="200"
                             src="http://127.0.0.1:5500/images/%E4%BA%A7%E5%93%81%E8%AF%A6%E6%83%85/u711.png"
@@ -292,14 +299,34 @@
 export default {
     name: 'productDetails',
     data() {
-        return {};
+        return {
+            tableData: {}
+        };
     },
-
+    created() {
+        this.getDeviceIDAndInfo();
+    },
     components: {},
 
     computed: {},
 
-    methods: {}
+    methods: {
+        getDeviceIDAndInfo() {
+            window.console.log(this.$route.query.id);
+            axios({
+                method: 'get',
+                url: '/getDeviceInfo',
+                params: {
+                    id: this.$route.query.id
+                }
+            })
+                .then(res => {
+                    window.console.log(res.data);
+                    this.tableData = res.data;
+                })
+                .catch();
+        }
+    }
 };
 </script>
 <style scoped>
