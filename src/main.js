@@ -1,14 +1,16 @@
 /*
  * @Author: your name
  * @Date: 2020-04-28 15:28:09
- * @LastEditTime: 2020-04-29 10:22:00
- * @LastEditors: your name
+ * @LastEditTime: 2020-05-08 14:20:56
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\main.js
  */
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
+import './plugins/axios'
+
 import ElementUI from 'element-ui';
 import VueI18n from 'vue-i18n';
 

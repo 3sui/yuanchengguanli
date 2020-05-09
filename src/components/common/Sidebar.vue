@@ -72,26 +72,26 @@ export default {
                     title: '产品档案',
                     subs: [
                         {
-                            index: '1-1',
-                            title: '产品列表',
-                            subs: [
-                                {
-                                    index: 'productlist',
-                                    title: '产品列表'
-                                },
-                                {
-                                    index: '',
-                                    title: '产品导入模板'
-                                },
-                                {
-                                    index: 'productDetails',
-                                    title: '产品详情'
-                                },
-                                {
-                                    index: 'addnewproduct',
-                                    title: '产品添加/编辑'
-                                }
-                            ]
+                            index: 'productlist',
+                            title: '产品列表'
+                            // subs: [
+                            //     {
+                            //         index: 'productlist',
+                            //         title: '产品列表'
+                            //     },
+                            //     {
+                            //         index: '',
+                            //         title: '产品导入模板'
+                            //     },
+                            //     {
+                            //         index: 'productDetails',
+                            //         title: '产品详情'
+                            //     },
+                            //     {
+                            //         index: 'addnewproduct',
+                            //         title: '产品添加/编辑'
+                            //     }
+                            // ]
                         },
                         {
                             index: '1-2',
@@ -170,8 +170,7 @@ export default {
                         },
                         {
                             index: 'AdminView',
-                            title: '管理员视图',
-                            
+                            title: '管理员视图'
                         }
                     ]
                 },

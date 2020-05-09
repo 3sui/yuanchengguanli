@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-04-28 16:25:21
- * @LastEditTime: 2020-05-06 09:28:24
+ * @LastEditTime: 2020-05-08 11:23:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \远程监控平台\vue-manage-system\src\components\page\map.vue
@@ -152,17 +152,22 @@ export default {
 </script>
 <style scoped>
 .map {
-    height: 800px;
+    height: calc(100vh - 220px);
+    min-height: 500px;
 }
 .map-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin-left: 20px;
-    height: 800px;
+    height: calc(100vh - 220px);
+    min-height: 500px;
 }
 .map-info > div {
     box-sizing: border-box;
-    margin-bottom: 13.3px;
+    /* margin-bottom: 13.3px; */
     padding: 15px;
-    height: 190px;
+    height: 22%;
     background-color: #eef1f6;
 }
 .info-one {
@@ -182,9 +187,9 @@ export default {
     justify-content: space-around;
     align-items: center;
 }
-.info-two>div p:nth-child(1),
-.info-three>div p:nth-child(1),
-.info-four>div p:nth-child(1) {
+.info-two > div p:nth-child(1),
+.info-three > div p:nth-child(1),
+.info-four > div p:nth-child(1) {
     font-size: 26px;
 }
 </style>
