@@ -9,7 +9,12 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button type="primary" class="handle-del mr10" @click="delAllSelection" icon="el-icon-plus">新增</el-button>
+                <el-button
+                    type="primary"
+                    class="handle-del mr10"
+                    @click="addUser"
+                    icon="el-icon-plus"
+                >新增</el-button>
             </div>
             <div class="handle-box">
                 <el-row>
@@ -69,25 +74,25 @@
                 <!-- 序号 -->
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                 <!-- 用户账号 -->
-                <el-table-column prop="account" label="用户账号"></el-table-column>
+                <el-table-column prop="account" label="用户账号" align="center"></el-table-column>
                 <!-- 会员姓名 -->
-                <el-table-column prop="userName" label="会员姓名"></el-table-column>
+                <el-table-column prop="userName" label="会员姓名" align="center"></el-table-column>
                 <!-- 用户组 -->
-                <el-table-column prop="userTeam" label="用户组"></el-table-column>
+                <el-table-column prop="userTeam" label="用户组" align="center"></el-table-column>
                 <!-- 企业名称 -->
-                <el-table-column prop="company" label="企业名称"></el-table-column>
+                <el-table-column prop="company" label="企业名称" align="center"></el-table-column>
                 <!-- 手机号码 -->
-                <el-table-column prop="phone" label="手机号码"></el-table-column>
+                <el-table-column prop="phone" label="手机号码" align="center"></el-table-column>
                 <!-- 邮箱 -->
-                <el-table-column prop="email" label="邮箱"></el-table-column>
+                <el-table-column prop="email" label="邮箱" align="center"></el-table-column>
                 <!-- 注册日期 -->
-                <el-table-column prop="registrationDate" label="注册日期"></el-table-column>
+                <el-table-column prop="registrationDate" label="注册日期" align="center"></el-table-column>
                 <!-- 所属行业大类 -->
-                <el-table-column prop="industry" label="所属行业大类"></el-table-column>
+                <el-table-column prop="industry" label="所属行业大类" align="center"></el-table-column>
                 <!-- 供应设备种类 -->
-                <el-table-column prop="deviceType" label="供应设备种类"></el-table-column>
+                <el-table-column prop="deviceType" label="供应设备种类" align="center"></el-table-column>
                 <!-- 所属角色 -->
-                <el-table-column prop="role" label="所属角色"></el-table-column>
+                <el-table-column prop="role" label="所属角色" align="center"></el-table-column>
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
@@ -174,12 +179,19 @@ export default {
     name: 'UserInfo',
     data() {
         return {
-            formInline:{
-
-            },
+            formInline: {},
             query: {
-                address: '',
-                name: '',
+                id: 0,
+                account: '',
+                userName: '',
+                userTeam: '',
+                company: '',
+                phone: '',
+                email: '',
+                registrationDate: '',
+                industry: '',
+                deviceType: '',
+                role: '',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -201,7 +213,7 @@ export default {
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
-                this.tableData = res.list;
+                this.tableData = res.userlist;
                 this.pageTotal = res.pageTotal || 50;
             });
         },
@@ -247,6 +259,10 @@ export default {
             this.editVisible = false;
             this.$message.success(`修改第 ${this.idx + 1} 行成功`);
             this.$set(this.tableData, this.idx, this.form);
+        },
+        //新增用户
+        addUser() {
+            this.editVisible = true;
         },
         // 分页导航
         handlePageChange(val) {

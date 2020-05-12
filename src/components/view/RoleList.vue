@@ -9,7 +9,12 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button type="primary" class="handle-del mr10" @click="delAllSelection" icon="el-icon-plus">新增</el-button>
+                <el-button
+                    type="primary"
+                    class="handle-del mr10"
+                    @click="addRole"
+                    icon="el-icon-plus"
+                >新增</el-button>
 
                 <el-input v-model="query.name" placeholder="名称" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
@@ -40,15 +45,15 @@
                 <!-- 序号 -->
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                 <!-- 角色 -->
-                <el-table-column prop="role" label="角色"></el-table-column>
+                <el-table-column prop="role" label="角色" align="center"></el-table-column>
                 <!-- 角色描述 -->
-                <el-table-column prop="roleDescription" label="角色描述"></el-table-column>
+                <el-table-column prop="roleDescription" label="角色描述" align="center"></el-table-column>
                 <!-- 用户 -->
-                <el-table-column prop="userList" label="用户"></el-table-column>
+                <el-table-column prop="userList" label="用户" align="center"></el-table-column>
                 <!-- 用户数 -->
-                <el-table-column prop="userSum" label="用户数"></el-table-column>
+                <el-table-column prop="userSum" label="用户数" align="center"></el-table-column>
                 <!-- 创建时间 -->
-                <el-table-column prop="createTime" label="创建时间"></el-table-column>
+                <el-table-column prop="createTime" label="创建时间" align="center"></el-table-column>
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
@@ -139,23 +144,23 @@ export default {
                         },
                         {
                             id: 2,
-                            label: '产品档案',
+                            label: '产品档案'
                         },
                         {
                             id: 3,
-                            label: '远程监控',
+                            label: '远程监控'
                         },
                         {
                             id: 4,
-                            label: '服务手册',
+                            label: '服务手册'
                         },
                         {
                             id: 5,
-                            label: '报警记录',
+                            label: '报警记录'
                         },
                         {
                             id: 6,
-                            label: '交易分析',
+                            label: '交易分析'
                         },
                         {
                             id: 7,
@@ -180,15 +185,19 @@ export default {
                             ]
                         }
                     ]
-                } 
+                }
             ],
             defaultProps: {
                 children: 'children',
                 label: 'label'
             },
             query: {
-                address: '',
-                name: '',
+                id: 1,
+                role: "",
+                roleDescription: "",
+                userList: [],
+                userSum: 0,
+                createTime:"",
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -210,7 +219,7 @@ export default {
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
-                this.tableData = res.list;
+                this.tableData = res.rolelist;
                 this.pageTotal = res.pageTotal || 50;
             });
         },
@@ -256,6 +265,10 @@ export default {
             this.editVisible = false;
             this.$message.success(`修改第 ${this.idx + 1} 行成功`);
             this.$set(this.tableData, this.idx, this.form);
+        },
+        //新增角色
+        addRole(){
+             this.editVisible = true;
         },
         // 分页导航
         handlePageChange(val) {

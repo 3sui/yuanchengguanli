@@ -39,15 +39,15 @@
                 <!-- 序号 -->
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                 <!-- 分类 -->
-                <el-table-column prop="classification" label="分类"></el-table-column>
+                <el-table-column prop="classification" label="分类"  align="center"></el-table-column>
                 <!-- 名称 -->
-                <el-table-column prop="name" label="名称"></el-table-column>
+                <el-table-column prop="names" label="名称"  align="center"></el-table-column>
                 <!-- 描述 -->
-                <el-table-column prop="description" label="描述"></el-table-column>
+                <el-table-column prop="description" label="描述"  align="center"></el-table-column>
                 <!-- 创建日期 -->
-                <el-table-column prop="createtime" label="创建日期"></el-table-column>
+                <el-table-column prop="createtime" label="创建日期"  align="center"></el-table-column>
                 <!-- 创建人 -->
-                <el-table-column prop="createuser" label="创建人"></el-table-column>
+                <el-table-column prop="createuser" label="创建人"  align="center"></el-table-column>
 
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">
@@ -115,38 +115,42 @@ export default {
         return {
             options: [
                 {
-                    value: '选项1',
+                    value: '客户行业',
                     label: '客户行业'
                 },
                 {
-                    value: '选项2',
+                    value: '企业行业',
                     label: '企业行业'
                 },
                 {
-                    value: '选项3',
+                    value: '故障类型',
                     label: '故障类型'
                 },
                 {
-                    value: '选项4',
+                    value: '故障现象',
                     label: '故障现象'
                 },
                 {
-                    value: '选项5',
+                    value: '设备种类',
                     label: '设备种类'
                 },
                 {
-                    value: '选项6',
+                    value: '设备名称',
                     label: '设备名称'
                 },
                 {
-                    value: '选项7',
+                    value: '型号描述',
                     label: '型号描述'
                 }
             ],
             value:'',
             query: {
-                address: '',
-                name: '',
+                id:0,
+                classification:'',
+                names: '',
+                description:'',
+                createtime:'',
+                createuser:'',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -168,7 +172,7 @@ export default {
         getData() {
             fetchData(this.query).then(res => {
                 console.log(res);
-                this.tableData = res.list;
+                this.tableData = res.datadictionary;
                 this.pageTotal = res.pageTotal || 50;
             });
         },
