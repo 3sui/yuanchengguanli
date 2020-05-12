@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 14:19:13
- * @LastEditTime: 2020-05-11 14:52:29
+ * @LastEditTime: 2020-05-11 17:51:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\view\AddNewProduct.vue
@@ -13,7 +13,7 @@
                 <el-breadcrumb-item>
                     <i class="el-icon-lx-calendar"></i> 产品档案
                 </el-breadcrumb-item>
-                <el-breadcrumb-item>添加产品</el-breadcrumb-item>
+                <el-breadcrumb-item>添加维修记录</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -22,37 +22,45 @@
                     <el-form-item label="设备ID" prop="DeviceID">
                         <el-input v-model="form.DeviceID"></el-input>
                     </el-form-item>
-                    <el-form-item label="设备种类" prop="DeviceClass">
-                        <el-select v-model="form.DeviceClass" placeholder="请选择">
-                            <el-option label="干燥设备" value="干燥设备"></el-option>
-                            <el-option label="液压设备" value="液压设备"></el-option>
+                    <el-form-item label="服务提出时间" prop="StartTime">
+                        <el-input v-model="form.StartTime"></el-input>
+                    </el-form-item>
+                    <el-form-item label="维修时间" prop="EndTime">
+                        <el-input v-model="form.EndTime"></el-input>
+                    </el-form-item>
+                    <el-form-item label="故障类型" prop="FaultType">
+                        <el-input v-model="form.FaultType"></el-input>
+                    </el-form-item>
+                    <el-form-item label="故障现象" prop="FaultPhenomenon">
+                        <el-input v-model="form.FaultPhenomenon"></el-input>
+                    </el-form-item>
+                    <el-form-item label="可能产生的原因" prop="PossiblePhenomena">
+                        <el-input v-model="form.PossiblePhenomena"></el-input>
+                    </el-form-item>
+                    <el-form-item label="排除方法" prop="Method">
+                        <el-input v-model="form.Method"></el-input>
+                    </el-form-item>
+                    <el-form-item label="故障部件供应商" prop="LastSupplier">
+                        <el-input v-model="form.LastSupplier"></el-input>
+                    </el-form-item>
+
+                    <el-form-item label="是否更换零部件" prop="IsReplace">
+                        <el-select v-model="form.IsReplace" placeholder="请选择">
+                            <el-option label="是" value="是"></el-option>
+                            <el-option label="否" value="否"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="设备名称" prop="DeviceName">
-                        <el-input v-model="form.DeviceName"></el-input>
+                    <el-form-item label="更换部件供应商" prop="NewSupplier">
+                        <el-input v-model="form.NewSupplier"></el-input>
                     </el-form-item>
-                    <el-form-item label="型号描述" prop="Model">
-                        <el-input v-model="form.Model"></el-input>
+                    <el-form-item label="维修费用" prop="Price">
+                        <el-input v-model="form.Price"></el-input>
                     </el-form-item>
-                    <el-form-item label="出厂编号" prop="SerialNumber">
-                        <el-input v-model="form.SerialNumber"></el-input>
+                    <el-form-item label="维修人" prop="RepairMan">
+                        <el-input v-model="form.RepairMan" type="text"></el-input>
                     </el-form-item>
-                    <el-form-item label="所属客户名称" prop="CustomerName">
-                        <el-input v-model="form.CustomerName"></el-input>
-                    </el-form-item>
-                    <el-form-item label="客户行业" prop="CustomerIndustry">
-                        <el-input v-model="form.CustomerIndustry"></el-input>
-                    </el-form-item>
-                    <el-form-item label="安装地址" prop="selectedOptions">
-                        <el-cascader
-                            size="large"
-                            :options="options"
-                            v-model="selectedOptions"
-                            @change="handleChange"
-                        ></el-cascader>
-                    </el-form-item>
-                    <el-form-item label="详细地址" prop="Address">
-                        <el-input v-model="form.Address"></el-input>
+                    <el-form-item label="备注" prop="More">
+                        <el-input v-model="form.More" type="text"></el-input>
                     </el-form-item>
 
                     <el-form-item>
@@ -74,16 +82,18 @@ export default {
             options: regionData,
             form: {
                 DeviceID: '',
-                DeviceClass: '',
-                DeviceName: '',
-                Model: '',
-                SerialNumber: '',
-                CustomerName: '',
-                CustomerIndustry: '',
-                Address: '',
-                Province: '',
-                City: '',
-                District: ''
+                StartTime: '',
+                EndTime: '',
+                FaultType: '',
+                FaultPhenomenon: '',
+                PossiblePhenomena: '',
+                Method: '',
+                NewSupplier: '',
+                LastSupplier: '',
+                IsReplace: '',
+                Price: '',
+                More: '',
+                RepairMan: ''
             },
             selectedOptions: ''
         };
@@ -92,7 +102,7 @@ export default {
         onSubmit() {
             axios({
                 method: 'post',
-                url: '/addNewProduct',
+                url: '/addNewMaintenance',
                 data: this.form
             })
                 .then(res => {

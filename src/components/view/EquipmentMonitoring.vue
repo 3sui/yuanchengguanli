@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 16:21:18
- * @LastEditTime: 2020-05-07 10:50:08
+ * @LastEditTime: 2020-05-11 19:39:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\view\EquipmentMonitoring.vue
@@ -12,8 +12,9 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 设备监控
+                    <i class="el-icon-lx-cascades"></i> 远程监控
                 </el-breadcrumb-item>
+                <el-breadcrumb-item>设备监控</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -154,40 +155,40 @@
                 @selection-change="handleSelectionChange"
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
+                <el-table-column prop="id" label="序号" width="55" align="center" type="index"></el-table-column>
 
-                <el-table-column prop="name" label="设备ID"></el-table-column>
+                <el-table-column prop="DeviceID" label="设备ID"></el-table-column>
 
-                <el-table-column prop="name" label="设备名称"></el-table-column>
-                <el-table-column prop="name" label="设备种类"></el-table-column>
-                <el-table-column prop="name" label="型号描述"></el-table-column>
-                <el-table-column prop="name" label="出厂编号"></el-table-column>
-                <el-table-column prop="name" label="客户名称"></el-table-column>
+                <el-table-column prop="DeviceName" label="设备名称"></el-table-column>
+                <el-table-column prop="DeviceClass" label="设备种类"></el-table-column>
+                <el-table-column prop="Model" label="型号描述"></el-table-column>
+                <el-table-column prop="SerialNumber" label="出厂编号"></el-table-column>
+                <el-table-column prop="CustomerName" label="客户名称"></el-table-column>
 
-                <el-table-column prop="name" label="主机温度(℃)"></el-table-column>
-                <el-table-column prop="name" label="水箱温度(℃)"></el-table-column>
-                <el-table-column prop="name" label="进口温度(℃)"></el-table-column>
-                <el-table-column prop="name" label="出口温度(℃)"></el-table-column>
-                <el-table-column prop="name" label="压力"></el-table-column>
-                <el-table-column prop="name" label="压差"></el-table-column>
-                <el-table-column prop="name" label="电机转速(转/分)"></el-table-column>
-                <el-table-column prop="name" label="电流(A)"></el-table-column>
-                <el-table-column prop="name" label="主油箱液位(mm)"></el-table-column>
-                <el-table-column prop="name" label="主油箱温度(℃)"></el-table-column>
-                <el-table-column prop="name" label="供油管路温度(℃)"></el-table-column>
-                <el-table-column prop="name" label="紧急过滤器压差"></el-table-column>
-                <el-table-column prop="name" label="双筒过滤器压差"></el-table-column>
-                <el-table-column prop="name" label="高位油箱液位(mm)"></el-table-column>
-                <el-table-column prop="name" label="控制油压力"></el-table-column>
-                <el-table-column prop="name" label="润滑油出口压力"></el-table-column>
-                <el-table-column prop="name" label="电机泵组震动"></el-table-column>
-                <el-table-column prop="name" label="电机电流"></el-table-column>
-                <el-table-column prop="name" label="主油箱油品分析"></el-table-column>
-                <el-table-column prop="name" label="故障代码"></el-table-column>
-                <el-table-column prop="name" label="运行时长(h)"></el-table-column>
-                <el-table-column prop="name" label="工作状态"></el-table-column>
-                <el-table-column prop="name" label="开关机"></el-table-column>
-                <el-table-column prop="name" label="更新日期"></el-table-column>
+                <el-table-column prop="Engin" label="主机温度(℃)"></el-table-column>
+                <el-table-column prop="WaterTank" label="水箱温度(℃)"></el-table-column>
+                <el-table-column prop="Enter" label="进口温度(℃)"></el-table-column>
+                <el-table-column prop="Export" label="出口温度(℃)"></el-table-column>
+                <el-table-column prop="Pressure" label="压力"></el-table-column>
+                <el-table-column prop="DiffPressure" label="压差"></el-table-column>
+                <el-table-column prop="RotatingSpeed" label="电机转速(转/分)"></el-table-column>
+                <el-table-column prop="Current" label="电流(A)"></el-table-column>
+                <el-table-column prop="Level" label="主油箱液位(mm)"></el-table-column>
+                <el-table-column prop="Temperature" label="主油箱温度(℃)"></el-table-column>
+                <el-table-column prop="TemperatureFeedLine" label="供油管路温度(℃)"></el-table-column>
+                <el-table-column prop="EmergencyDiffPressure" label="紧急过滤器压差"></el-table-column>
+                <el-table-column prop="BinocularsDiffPressure" label="双筒过滤器压差"></el-table-column>
+                <el-table-column prop="FuelTankLevel" label="高位油箱液位(mm)"></el-table-column>
+                <el-table-column prop="ControlOilPressure" label="控制油压力"></el-table-column>
+                <el-table-column prop="LubricatingOilOutletPressure" label="润滑油出口压力"></el-table-column>
+                <el-table-column prop="MotorPumpShock" label="电机泵组震动"></el-table-column>
+                <el-table-column prop="MotorCurrent" label="电机电流"></el-table-column>
+                <el-table-column prop="MainTankOilAnalysis" label="主油箱油品分析"></el-table-column>
+                <el-table-column prop="ErrorCode" label="故障代码"></el-table-column>
+                <el-table-column prop="Duration" label="运行时长(h)"></el-table-column>
+                <el-table-column prop="status" label="工作状态"></el-table-column>
+                <el-table-column prop="switch" label="开关机"></el-table-column>
+                <!-- <el-table-column prop="name" label="更新日期"></el-table-column> -->
 
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
@@ -236,9 +237,8 @@
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
 export default {
-    name: 'basetable',
+    name: 'EquipmentMonitoring',
     data() {
         return {
             visible: false,
@@ -297,10 +297,12 @@ export default {
     methods: {
         // 获取 easy-mock 的模拟数据
         getData() {
-            fetchData(this.query).then(res => {
-                console.log(res);
-                this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
+            axios({
+                method: 'get',
+                url: '/fetchEquipment'
+            }).then(res => {
+                this.tableData = res.data;
+                console.log(res.data);
             });
         },
         // 触发搜索按钮

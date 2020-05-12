@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 09:29:23
- * @LastEditTime: 2020-05-09 17:03:06
+ * @LastEditTime: 2020-05-11 17:23:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\page\ProductList.vue
@@ -11,7 +11,10 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 产品列表
+                    <i class="el-icon-lx-cascades"></i> 产品档案
+                </el-breadcrumb-item>
+                <el-breadcrumb-item>
+                    产品列表
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -171,7 +174,7 @@
                             type="text"
                             icon="el-icon-edit"
                             @click="handleEdit(scope.$index, scope.row)"
-                        >编辑</el-button> -->
+                        >编辑</el-button>-->
                         <el-button
                             type="text"
                             icon="el-icon-view"
@@ -356,7 +359,6 @@ export default {
         // 多选操作
         handleSelectionChange(val) {
             this.multipleSelection = val;
-            window.console.log(this.multipleSelection);
         },
 
         //批量删除
@@ -366,6 +368,10 @@ export default {
                 idArr.push(this.multipleSelection[i].DeviceID);
             }
             window.console.log(idArr);
+            if (this.multipleSelection.length === 0) {
+                this.$message.warning('请选择需要删除的项');
+                return
+            }
             this.$confirm('确定要删除吗？', '提示', {
                 type: 'warning'
             })
