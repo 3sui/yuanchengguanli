@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-04-28 15:28:09
+ * @LastEditTime: 2020-05-12 15:44:20
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-manage-system\src\components\common\Home.vue
+ -->
 <template>
     <div class="wrapper">
         <v-head></v-head>
@@ -6,7 +14,7 @@
             <v-tags></v-tags>
             <div class="content">
                 <transition name="move" mode="out-in">
-                    <keep-alive :include="tagsList">
+                    <keep-alive :exclude="tagsList">
                         <router-view></router-view>
                     </keep-alive>
                 </transition>
@@ -24,7 +32,7 @@ import bus from './bus';
 export default {
     data() {
         return {
-            tagsList: [],
+            tagsList: ['MeasuringPointDetails'],
             collapse: false
         };
     },

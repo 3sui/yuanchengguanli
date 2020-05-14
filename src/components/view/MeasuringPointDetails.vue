@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-07 10:52:41
- * @LastEditTime: 2020-05-07 13:44:25
+ * @LastEditTime: 2020-05-12 17:41:17
  * @LastEditors: Please set LastEditors
  * @Description: 测点详情
  * @FilePath: \vue-manage-system\src\components\view\MeasuringPointDetails.vue
@@ -11,8 +11,9 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 测点详情
+                    <i class="el-icon-lx-cascades"></i> 远程监控
                 </el-breadcrumb-item>
+                <el-breadcrumb-item>测点详情</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -22,7 +23,7 @@
                     <schart class="schart" canvasId="line" :options="options2"></schart>
                 </div>
             </div>
-            <div class="handle-box">
+            <!-- <div class="handle-box">
                 <el-row>
                     <el-col :span="18">
                         <div class="product-status">
@@ -56,7 +57,7 @@
                         </div>
                     </el-col>
                 </el-row>
-            </div>
+            </div>-->
             <el-table
                 :data="tableData"
                 border
@@ -67,13 +68,13 @@
             >
                 <!-- <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>-->
-                <el-table-column prop="name" label="设备ID"></el-table-column>
-                <el-table-column prop="name" label="设备名称"></el-table-column>
-                <el-table-column prop="name" label="设备种类"></el-table-column>
-                <el-table-column prop="name" label="型号描述"></el-table-column>
-                <el-table-column prop="name" label="出厂编号"></el-table-column>
+                <el-table-column prop="DeviceID" label="设备ID"></el-table-column>
+                <el-table-column prop="DeviceName" label="设备名称"></el-table-column>
+                <el-table-column prop="DeviceClass" label="设备种类"></el-table-column>
+                <el-table-column prop="Model" label="型号描述"></el-table-column>
+                <el-table-column prop="SerialNumber" label="出厂编号"></el-table-column>
             </el-table>
-            <div class="pagination">
+            <!-- <div class="pagination">
                 <el-pagination
                     background
                     layout="total, prev, pager, next"
@@ -82,14 +83,13 @@
                     :total="pageTotal"
                     @current-change="handlePageChange"
                 ></el-pagination>
-            </div>
+            </div>-->
         </div>
     </div>
 </template>
  
 <script>
 import Schart from 'vue-schart';
-import { fetchData } from '../../api/index';
 
 export default {
     name: 'MeasuringPointDetails',
@@ -146,45 +146,15 @@ export default {
                     text: '主机温度(℃)'
                 },
                 bgColor: '#fff',
-                labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+                labels: [],
                 datasets: [
                     {
-                        label: '温度',
-                        data: [
-                            234,
-                            278,
-                            270,
-                            190,
-                            230,
-                            234,
-                            278,
-                            270,
-                            190,
-                            230,
-                            234,
-                            278,
-                            270,
-                            190,
-                            230,
-                            234,
-                            278,
-                            270,
-                            190,
-                            230,
-                            234,
-                            278,
-                            270,
-                            190,
-                            230,
-                            230,
-                            234,
-                            278,
-                            270,
-                            190,
-                            230
-                        ]
+                        data: []
                     }
                 ],
+                legend: {
+                    display: false
+                },
                 // leftPadding: 50,
                 // rightPadding: 50,
                 width: '100%'
@@ -204,11 +174,39 @@ export default {
     },
     methods: {
         getData() {
-            fetchData(this.query).then(res => {
-                console.log(res);
-                this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
-            });
+            let id = this.$route.query.id;
+            let type = this.$route.query.type;
+            let label = this.$route.query.label;
+            // this.tableData = this.$route.query.row;
+            window.console.log(this.tableData);
+            axios({
+                method: 'get',
+                url: '/fetchMeasuringPoint',
+                params: {
+                    id,
+                    type
+                }
+            })
+                .then(res => {
+                    let data = res.data;
+                    console.log(data);
+
+                    data.reverse();
+                    let arr1 = [];
+                    let arr2 = [];
+                    for (let i in data) {
+                        arr1 = arr1.concat(Object.keys(data[i]));
+                        arr2 = arr2.concat(Object.values(data[i]));
+                    }
+                    console.log(arr1, arr2);
+                    arr1 = arr1.map(item => {
+                        return item.slice(6, 10);
+                    });
+                    this.options2.labels = arr1;
+                    this.options2.datasets[0].data = arr2;
+                    this.options2.title.text = label;
+                })
+                .catch();
         },
         // 触发搜索按钮
         handleSearch() {

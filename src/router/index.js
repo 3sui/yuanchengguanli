@@ -78,6 +78,13 @@ export default new Router({
                     }
                 },
                 {
+                    path: '/DeviceList',
+                    component: () => import( /* webpackChunkName: "DeviceList" */ '../components/view2/DeviceList.vue'),
+                    meta: {
+                        title: '设备监控'
+                    }
+                },
+                {
                     path: '/MeasuringPointDetails',
                     component: () => import( /* webpackChunkName: "MeasuringPointDetails" */ '../components/view/MeasuringPointDetails.vue'),
                     meta: {

@@ -105,18 +105,20 @@ export default {
                     title: '远程监控',
                     subs: [
                         {
-                            index: '2-1',
-                            title: '设备监控',
-                            subs: [
-                                {
-                                    index: 'EquipmentMonitoring',
-                                    title: '设备监控'
-                                },
-                                {
-                                    index: 'MeasuringPointDetails',
-                                    title: '测点详情'
-                                }
-                            ]
+                            // index: 'EquipmentMonitoring',
+                            index: 'DeviceList',
+
+                            title: '设备监控'
+                            // subs: [
+                            //     {
+                            //         index: 'EquipmentMonitoring',
+                            //         title: '设备监控'
+                            //     },
+                            //     {
+                            //         index: 'MeasuringPointDetails',
+                            //         title: '测点详情'
+                            //     }
+                            // ]
                         },
                         {
                             index: 'AlarmRecord',
@@ -126,28 +128,28 @@ export default {
                 },
                 {
                     icon: 'el-icon-lx-calendar',
-                    index: '3',
+                    index: 'ServiceBooklet',
                     title: '服务手册',
-                    subs: [
-                        {
-                            index: '3-1',
-                            title: '服务手册列表',
-                            subs: [
-                                {
-                                    index: 'ServiceBooklet',
-                                    title: '服务手册列表'
-                                },
-                                {
-                                    index: 'AddBooklet',
-                                    title: '添加'
-                                },
-                                {
-                                    index: 'ImportingBooklet',
-                                    title: '导入'
-                                }
-                            ]
-                        }
-                    ]
+                    // subs: [
+                    //     {
+                    //         index: '3-1',
+                    //         title: '服务手册列表',
+                    //         subs: [
+                    //             {
+                    //                 index: 'ServiceBooklet',
+                    //                 title: '服务手册列表'
+                    //             },
+                    //             {
+                    //                 index: 'AddBooklet',
+                    //                 title: '添加'
+                    //             },
+                    //             {
+                    //                 index: 'ImportingBooklet',
+                    //                 title: '导入'
+                    //             }
+                    //         ]
+                    //     }
+                    // ]
                 },
                 {
                     icon: 'el-icon-lx-calendar',
@@ -220,7 +222,7 @@ export default {
                             // ]
                         }
                     ]
-                },
+                }
 
                 //dome
 

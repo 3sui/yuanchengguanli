@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 09:29:23
- * @LastEditTime: 2020-05-11 17:23:20
+ * @LastEditTime: 2020-05-12 10:54:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\page\ProductList.vue
@@ -220,7 +220,6 @@
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
 export default {
     name: 'basetable',
     data() {

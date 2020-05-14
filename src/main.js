@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-28 15:28:09
- * @LastEditTime: 2020-05-08 14:20:56
+ * @LastEditTime: 2020-05-13 17:24:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\main.js
@@ -16,18 +16,25 @@ import VueI18n from 'vue-i18n';
 
 import BaiduMap from 'vue-baidu-map'
 
-import { messages } from './components/common/i18n';
+import {
+    messages
+} from './components/common/i18n';
 import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 // import './assets/css/theme-green/index.css'; // 浅绿色主题
 import './assets/css/icon.css';
 import './components/common/directives';
 import 'babel-polyfill';
+import XLSX from 'xlsx'
+
+import JsonExcel from 'vue-json-excel'
+Vue.component('downloadExcel', JsonExcel)
+Vue.use(XLSX)
 
 Vue.config.productionTip = false;
 Vue.use(BaiduMap, {
     // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
     ak: 'MrbZMmsfnNd32LhWaqtPgCCb7CKi4uvQ'
-  })
+})
 Vue.use(VueI18n);
 Vue.use(ElementUI, {
     size: 'small'
