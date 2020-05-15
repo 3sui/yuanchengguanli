@@ -9,7 +9,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-import './plugins/axios'
+//import './plugins/axios'
 
 import ElementUI from 'element-ui';
 import VueI18n from 'vue-i18n';
@@ -22,6 +22,16 @@ import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 import './assets/css/icon.css';
 import './components/common/directives';
 import 'babel-polyfill';
+import axios from "axios";
+
+
+
+Vue.prototype.$axios = axios
+axios.defaults.headers.timeout = 5000;
+axios.defaults.baseURL = '/api';
+axios.defaults.withCredentials = false;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 Vue.config.productionTip = false;
 Vue.use(BaiduMap, {
@@ -59,6 +69,7 @@ router.beforeEach((to, from, next) => {
 });
 
 new Vue({
+   
     router,
     i18n,
     render: h => h(App)

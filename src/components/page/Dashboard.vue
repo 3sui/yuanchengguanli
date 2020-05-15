@@ -16,7 +16,7 @@
                     </div>
                     <div class="user-info-list">
                         上次登录地点：
-                        <span>东莞</span>
+                        <span>常州</span>
                     </div>
                 </el-card>
                 <el-card shadow="hover" style="height:252px;">
@@ -31,13 +31,13 @@
             </el-col>
             <el-col :span="16">
                 <el-row :gutter="20" class="mgb20">
-                    <el-col :span="8">
+                    <el-col :span="4">
                         <el-card shadow="hover" :body-style="{padding: '0px'}">
                             <div class="grid-content grid-con-1">
                                 <i class="el-icon-lx-people grid-con-icon"></i>
                                 <div class="grid-cont-right">
                                     <div class="grid-num">1234</div>
-                                    <div>用户访问量</div>
+                                    <div>设备数</div>
                                 </div>
                             </div>
                         </el-card>
@@ -114,6 +114,7 @@ import Schart from 'vue-schart';
 import bus from '../common/bus';
 export default {
     name: 'dashboard',
+    
     data() {
         return {
             name: localStorage.getItem('ms_username'),

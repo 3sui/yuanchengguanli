@@ -9,14 +9,20 @@
         </div>
         <div class="container">
             <div class="handle-box">
-                <el-button type="primary" class="handle-del mr10" @click="AddData" icon="el-icon-plus">新增</el-button>
-                <el-input v-model="query.name" placeholder="名称" class="handle-input mr10"></el-input>
-                <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                <el-button
+                    type="primary"
+                    class="handle-del mr10"
+                    @click="AddData"
+                    icon="el-icon-plus"
+                >新增</el-button>
+                <el-input v-model="keyword" placeholder="名称" class="handle-input mr10"></el-input>
+                <el-button type="primary" icon="el-icon-search" @click="handleSearch(keyword)">搜索</el-button>
+
                 <div class="block datechoose">
                     <span class="demonstration">创建日期</span>
                     &nbsp;
                     <el-date-picker
-                        v-model="value1"
+                        v-model="date"
                         type="daterange"
                         range-separator="至"
                         start-placeholder="开始日期"
@@ -27,7 +33,7 @@
 
             <!-- 表格列 -->
             <el-table
-                :data="tableData"
+                :data="tableData.slice((query.pageIndex-1)*query.pageSize,query.pageIndex*query.pageSize)"
                 border
                 class="table"
                 ref="multipleTable"
@@ -37,17 +43,17 @@
                 <!-- 复选框 -->
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <!-- 序号 -->
-                <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
+                <el-table-column prop="ID" label="序号" width="55" align="center"></el-table-column>
                 <!-- 分类 -->
-                <el-table-column prop="classification" label="分类"  align="center"></el-table-column>
+                <el-table-column prop="classification" label="分类" align="center"></el-table-column>
                 <!-- 名称 -->
-                <el-table-column prop="names" label="名称"  align="center"></el-table-column>
+                <el-table-column prop="keyname" label="名称" align="center"></el-table-column>
                 <!-- 描述 -->
-                <el-table-column prop="description" label="描述"  align="center"></el-table-column>
+                <el-table-column prop="description" label="描述" align="center"></el-table-column>
                 <!-- 创建日期 -->
-                <el-table-column prop="createtime" label="创建日期"  align="center"></el-table-column>
+                <el-table-column prop="createtime" label="创建日期" align="center"></el-table-column>
                 <!-- 创建人 -->
-                <el-table-column prop="createuser" label="创建人"  align="center"></el-table-column>
+                <el-table-column prop="createuser" label="创建人" align="center"></el-table-column>
 
                 <!-- 操作 -->
                 <el-table-column label="操作" width="180" align="center">
@@ -83,32 +89,32 @@
         <el-dialog title="新增/编辑" :visible.sync="editVisible" width="30%">
             <el-form ref="form" :model="form" label-width="100px">
                 <el-form-item label="*选择分类">
-                    <el-select v-model="value" placeholder="请选择">
+                    <el-select v-model="form.classification" placeholder="请选择">
                         <el-option
                             v-for="item in options"
-                            :key="item.value"
+                            :key="item.index"
                             :label="item.label"
                             :value="item.value"
                         ></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="*名称">
-                    <el-input v-model="form.address"></el-input>
+                    <el-input v-model="form.keyname"></el-input>
                 </el-form-item>
                 <el-form-item label="描述">
-                    <el-input v-model="form.address"></el-input>
+                    <el-input v-model="form.description"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" @click="saveEdit">确 定</el-button>
+                <el-button @click="cancel">取 消</el-button>
+                <el-button type="primary" @click=" Confirm ">确 定</el-button>
             </span>
         </el-dialog>
     </div>
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
+import { fetchData, deleteData, addData, updateData, searchData } from '../../api/index';
 export default {
     name: 'DataDictionary',
     data() {
@@ -143,43 +149,57 @@ export default {
                     label: '型号描述'
                 }
             ],
-            value:'',
+            date: '',
             query: {
-                id:0,
-                classification:'',
-                names: '',
-                description:'',
-                createtime:'',
-                createuser:'',
                 pageIndex: 1,
                 pageSize: 10
             },
+            keyword: '',
             tableData: [],
+          
             multipleSelection: [],
             delList: [],
             editVisible: false,
             pageTotal: 0,
             form: {},
             idx: -1,
-            id: -1
+            id: -1,
+            isAdd: true
         };
     },
     created() {
         this.getData();
     },
+   
     methods: {
-        // 获取 easy-mock 的模拟数据
+      
+
+        // 获取数据
         getData() {
-            fetchData(this.query).then(res => {
-                console.log(res);
-                this.tableData = res.datadictionary;
-                this.pageTotal = res.pageTotal || 50;
+            fetchData('getAllDataDictionary').then(res => {
+                //console.log(res);
+                this.tableData = res.data;
+             
+                this.pageTotal = this.tableData.length;
             });
         },
         // 触发搜索按钮
-        handleSearch() {
-            this.$set(this.query, 'pageIndex', 1);
-            this.getData();
+        handleSearch(value) {
+            if (value !== '') {
+                let query = {
+                    keyword: value
+                };
+                searchData('getDataDictionary', query).then(res => {
+                   // console.log('ok');
+                    this.tableData = res.data;
+                 
+                    this.pageTotal = this.tableData.length;
+                });
+            } else {
+                this.getData();
+            }
+            //this.tableData = this.filterBy(this.tableAll, value);
+            //this.pageTotal = this.tableData.length;
         },
         // 删除操作
         handleDelete(index, row) {
@@ -188,8 +208,17 @@ export default {
                 type: 'warning'
             })
                 .then(() => {
+                    let query = {
+                        ID: row.ID
+                    };
+                    deleteData('deleteDataDictionaryByID', query).then(res => {
+                        //console.log(res);
+                        this.getData();
+                        //this.tableData = res.data;
+                        // this.pageTotal = res.pageTotal || 50;
+                    });
                     this.$message.success('删除成功');
-                    this.tableData.splice(index, 1);
+                    // this.tableData.splice(index, 1);
                 })
                 .catch(() => {});
         },
@@ -197,36 +226,89 @@ export default {
         handleSelectionChange(val) {
             this.multipleSelection = val;
         },
-        delAllSelection() {
-            const length = this.multipleSelection.length;
-            let str = '';
-            this.delList = this.delList.concat(this.multipleSelection);
-            for (let i = 0; i < length; i++) {
-                str += this.multipleSelection[i].name + ' ';
-            }
-            this.$message.error(`删除了${str}`);
-            this.multipleSelection = [];
-        },
+        // delAllSelection() {
+        //     const length = this.multipleSelection.length;
+        //     let str = '';
+        //     this.delList = this.delList.concat(this.multipleSelection);
+        //     for (let i = 0; i < length; i++) {
+        //         str += this.multipleSelection[i].name + ' ';
+        //     }
+        //     this.$message.error(`删除了${str}`);
+        //     this.multipleSelection = [];
+        // },
         //添加操作
         AddData() {
-            this.editVisible=true;
+            this.editVisible = true;
+            this.isAdd = true;
+        },
+        //添加确认
+        Confirm() {
+            if (this.form.classification === '' || this.keyname === '') {
+                this.$message.error(`请输入必填项`);
+            } else {
+                if (this.isAdd) {
+                    let query = {
+                        classification: this.form.classification,
+                        keyname: this.form.keyname,
+                        description: this.form.description,
+                        createuser: localStorage.getItem('ms_username')
+                    };
+
+                    //console.log(query);
+                    addData('/addDataDictionary', query)
+                        .then(res => {
+                            //console.log(res);
+                            this.getData();
+                        })
+                        .catch(() => {});
+                    this.editVisible = false;
+                    this.$message.success('添加成功');
+                } else {
+                    let query = {
+                        ID: this.form.ID,
+                        classification: this.form.classification,
+                        keyname: this.form.keyname,
+                        description: this.form.description,
+                        createuser: localStorage.getItem('ms_username')
+                    };
+                    updateData('/updateDataDictionary', query)
+                        .then(res => {
+                            //console.log(res);
+                            this.getData();
+                        })
+                        .catch(() => {});
+                    this.editVisible = false;
+                    this.$message.success('修改成功');
+                }
+                this.getData();
+                this.form = {};
+            }
+        },
+        //取消
+        cancel() {
+            this.editVisible = false;
+            this.form = {};
         },
         // 编辑操作
         handleEdit(index, row) {
             this.idx = index;
             this.form = row;
             this.editVisible = true;
+            this.isAdd = false;
         },
-        // 保存编辑
-        saveEdit() {
-            this.editVisible = false;
-            this.$message.success(`修改第 ${this.idx + 1} 行成功`);
-            this.$set(this.tableData, this.idx, this.form);
-        },
+
+        //过滤
+        // filterBy(tableData, value) {
+        //     return tableData.filter(function(tableData) {
+        //         return tableData.keyname.match(value);
+        //     });
+        // },
+
         // 分页导航
         handlePageChange(val) {
-            this.$set(this.query, 'pageIndex', val);
-            this.getData();
+           // this.$set(this.query, 'pageIndex', val);
+           // this.getData();
+           this.query.pageIndex=val;
         }
     }
 };
