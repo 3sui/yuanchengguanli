@@ -15,6 +15,7 @@ import ElementUI from 'element-ui';
 import VueI18n from 'vue-i18n';
 
 import BaiduMap from 'vue-baidu-map'
+import echarts from 'echarts'
 
 import {
     messages
@@ -24,25 +25,12 @@ import 'element-ui/lib/theme-chalk/index.css'; // 默认主题
 import './assets/css/icon.css';
 import './components/common/directives';
 import 'babel-polyfill';
-<<<<<<< HEAD
-import axios from "axios";
-
-
-
-Vue.prototype.$axios = axios
-axios.defaults.headers.timeout = 5000;
-axios.defaults.baseURL = '/api';
-axios.defaults.withCredentials = false;
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
-=======
 import XLSX from 'xlsx'
 
 import JsonExcel from 'vue-json-excel'
 Vue.component('downloadExcel', JsonExcel)
 Vue.use(XLSX)
->>>>>>> 130b1e832332ad5bf001e2d0c6a928d2d60418ab
-
+Vue.use(echarts)
 Vue.config.productionTip = false;
 Vue.use(BaiduMap, {
     // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
@@ -56,7 +44,7 @@ const i18n = new VueI18n({
     locale: 'zh',
     messages
 });
-
+Vue.prototype.$echarts = echarts;
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
     document.title = `${to.meta.title} | vue-manage-system`;
