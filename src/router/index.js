@@ -64,8 +64,22 @@ export default new Router({
                     }
                 },
                 {
+                    path: '/AddNewMaintenance',
+                    component: () => import( /* webpackChunkName: "AddNewMaintenance" */ '../components/view/AddNewMaintenance.vue'),
+                    meta: {
+                        title: '添加维修记录'
+                    }
+                },
+                {
                     path: '/EquipmentMonitoring',
                     component: () => import( /* webpackChunkName: "EquipmentMonitoring" */ '../components/view/EquipmentMonitoring.vue'),
+                    meta: {
+                        title: '设备监控'
+                    }
+                },
+                {
+                    path: '/DeviceList',
+                    component: () => import( /* webpackChunkName: "DeviceList" */ '../components/view2/DeviceList.vue'),
                     meta: {
                         title: '设备监控'
                     }

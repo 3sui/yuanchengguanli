@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 15:04:18
- * @LastEditTime: 2020-05-06 15:17:51
+ * @LastEditTime: 2020-05-11 17:25:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\view\MaintenanceRecords.vue
@@ -11,7 +11,10 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 产品列表
+                    <i class="el-icon-lx-cascades"></i> 产品档案
+                </el-breadcrumb-item>
+                <el-breadcrumb-item>
+                    维修记录
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -22,9 +25,9 @@
                         <div class="mt-10">
                             <el-button
                                 type="primary"
-                                icon="el-icon-delete"
+                                icon="el-icon-lx-add"
                                 class="handle-del mr10"
-                                @click="delAllSelection"
+                                @click="$router.push('./addNewMaintenance')"
                             >新增</el-button>
                         </div>
                         <div>
@@ -113,35 +116,34 @@
                 @selection-change="handleSelectionChange"
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
-                <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
-                <el-table-column prop="name" label="客户名称"></el-table-column>
-                
-                <el-table-column prop="name" label="设备ID"></el-table-column>
-                <el-table-column prop="name" label="设备种类"></el-table-column>
-                <el-table-column prop="name" label="设备名称"></el-table-column>
-                <el-table-column prop="name" label="型号描述"></el-table-column>
-                <el-table-column prop="name" label="出厂编号"></el-table-column>
-                <el-table-column prop="name" label="服务提出日期"></el-table-column>
-                <el-table-column prop="name" label="维修时间"></el-table-column>
+                <el-table-column type="index" label="序号" width="55" align="center"></el-table-column>
+                <el-table-column prop="CustomerName" label="客户名称"></el-table-column>
 
-                <el-table-column prop="name" label="故障类型"></el-table-column>
-                <el-table-column prop="name" label="故障现象"></el-table-column>
-                <el-table-column prop="name" label="故障部件供应商"></el-table-column>
-                <el-table-column prop="name" label="是否更换零部件"></el-table-column>
-                <el-table-column prop="name" label="更换部件供应商"></el-table-column>
-                <el-table-column prop="name" label="维修费用（元）"></el-table-column>
-                <el-table-column prop="name" label="备注"></el-table-column>
+                <el-table-column prop="DeviceID" label="设备ID"></el-table-column>
+                <el-table-column prop="DeviceClass" label="设备种类"></el-table-column>
+                <el-table-column prop="DeviceName" label="设备名称"></el-table-column>
+                <el-table-column prop="Model" label="型号描述"></el-table-column>
+                <el-table-column prop="SerialNumber" label="出厂编号"></el-table-column>
+                <el-table-column prop="StartTime" label="服务提出日期"></el-table-column>
+                <el-table-column prop="EndTime" label="维修时间"></el-table-column>
 
-                
-                <el-table-column prop="address" label="维修人"></el-table-column>
-                
+                <el-table-column prop="FaultType" label="故障类型"></el-table-column>
+                <el-table-column prop="FaultPhenomenon" label="故障现象"></el-table-column>
+                <el-table-column prop="LastSupplier" label="故障部件供应商"></el-table-column>
+                <el-table-column prop="IsReplace" label="是否更换零部件"></el-table-column>
+                <el-table-column prop="NewSupplier" label="更换部件供应商"></el-table-column>
+                <el-table-column prop="Price" label="维修费用（元）"></el-table-column>
+                <el-table-column prop="More" label="备注"></el-table-column>
+
+                <el-table-column prop="RepairMan" label="维修人"></el-table-column>
+
                 <el-table-column label="操作" width="180" align="center">
                     <template slot-scope="scope">
                         <el-button
                             type="text"
-                            icon="el-icon-edit"
-                            @click="handleEdit(scope.$index, scope.row)"
-                        >编辑</el-button>
+                            icon="el-icon-view"
+                            @click="handleDetail(scope.$index, scope.row)"
+                        >详情</el-button>
                         <el-button
                             type="text"
                             icon="el-icon-delete"
@@ -182,9 +184,8 @@
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
 export default {
-    name: 'basetable',
+    name: 'MaintenanceRecords',
     data() {
         return {
             pickerOptions: {
@@ -218,6 +219,8 @@ export default {
                     }
                 ]
             },
+            tableData: [],
+
             value1: '',
             value2: '',
             query: {
@@ -226,7 +229,6 @@ export default {
                 pageIndex: 1,
                 pageSize: 10
             },
-            tableData: [],
             multipleSelection: [],
             delList: [],
             editVisible: false,
@@ -240,14 +242,46 @@ export default {
         this.getData();
     },
     methods: {
-        // 获取 easy-mock 的模拟数据
+        //吧时间戳转化为想要的时间格式
+        formateTimeStamp(time) {
+            var date = new Date();
+            date.setTime(time);
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+            var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+            var hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+            var minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+            var second = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+        },
+
+        // 获取设备列表数据
         getData() {
-            fetchData(this.query).then(res => {
-                console.log(res);
-                this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
+            axios
+                .get('/getMaintenanceRecords')
+                .then(res => {
+                    window.console.log(res);
+                    if (res.status === 200) {
+                        this.tableData = res.data;
+                        this.pageTotal = res.data.length;
+                        window.console.log(res.data);
+                    } else {
+                        window.console.log('服务器错误');
+                    }
+                })
+                .catch();
+        },
+
+        // 查看详情
+        handleDetail(index, row) {
+            this.$router.push({
+                path: './MaintenanceDetails',
+                query: {
+                    id: row.ID
+                }
             });
         },
+
         // 触发搜索按钮
         handleSearch() {
             this.$set(this.query, 'pageIndex', 1);
@@ -255,30 +289,68 @@ export default {
         },
         // 删除操作
         handleDelete(index, row) {
+            let idArr = [];
+            idArr.push(row.DeviceID);
             // 二次确认删除
             this.$confirm('确定要删除吗？', '提示', {
                 type: 'warning'
             })
                 .then(() => {
-                    this.$message.success('删除成功');
-                    this.tableData.splice(index, 1);
+                    axios({
+                        method: 'get',
+                        url: '/deleteMaintenance',
+                        params: {
+                            id: idArr
+                        }
+                    })
+                        .then(res => {
+                            window.console.log(res.data);
+                            this.$message.success(res.data);
+                            this.getData();
+                        })
+                        .catch();
                 })
                 .catch(() => {});
         },
+
         // 多选操作
         handleSelectionChange(val) {
             this.multipleSelection = val;
         },
+
+        //批量删除
         delAllSelection() {
-            const length = this.multipleSelection.length;
-            let str = '';
-            this.delList = this.delList.concat(this.multipleSelection);
-            for (let i = 0; i < length; i++) {
-                str += this.multipleSelection[i].name + ' ';
+            let idArr = [];
+            for (let i = 0; i < this.multipleSelection.length; i++) {
+                idArr.push(this.multipleSelection[i].DeviceID);
             }
-            this.$message.error(`删除了${str}`);
-            this.multipleSelection = [];
+            window.console.log(idArr);
+            if (this.multipleSelection.length === 0) {
+                this.$message.warning('请选择需要删除的项');
+                return;
+            }
+            this.$confirm('确定要删除吗？', '提示', {
+                type: 'warning'
+            })
+                .then(() => {
+                    axios({
+                        method: 'get',
+                        url: '/deleteMaintenance',
+                        params: {
+                            id: idArr
+                        }
+                    })
+                        .then(res => {
+                            window.console.log(res.data);
+                            this.$message.success(res.data);
+                            this.getData();
+                        })
+                        .catch({});
+                    this.multipleSelection = [];
+                })
+                .catch(() => {});
         },
+
         // 编辑操作
         handleEdit(index, row) {
             this.idx = index;

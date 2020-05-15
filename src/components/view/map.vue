@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-04-28 16:25:21
- * @LastEditTime: 2020-05-08 11:23:44
+ * @LastEditTime: 2020-05-11 11:26:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \远程监控平台\vue-manage-system\src\components\page\map.vue
@@ -50,28 +50,28 @@
                 <el-col :span="6">
                     <div class="map-info">
                         <div class="info-one">
-                            <p>115,649</p>
-                            <p>测点数</p>
+                            <p>{{deviceNum}}</p>
+                            <p>设备数量</p>
                         </div>
                         <div class="info-two">
-                            <el-progress type="circle" :percentage="25"></el-progress>
+                            <el-progress type="circle" :percentage="status.yxs*2"></el-progress>
                             <div>
-                                <p>15,734</p>
+                                <p>{{status.yxs}}</p>
                                 <p>运行设备数</p>
                             </div>
                         </div>
                         <div class="info-three">
-                            <el-progress type="circle" :percentage="25"></el-progress>
+                            <el-progress type="circle" :percentage="(deviceNum-status.yxs)*2"></el-progress>
                             <div>
-                                <p>287</p>
+                                <p>{{deviceNum-status.yxs}}</p>
                                 <p>关机设备数</p>
                             </div>
                         </div>
                         <div class="info-four">
-                            <el-progress type="circle" :percentage="25"></el-progress>
+                            <el-progress type="circle" :percentage="status.djs*2"></el-progress>
                             <div>
-                                <p>354</p>
-                                <p>设备报警数</p>
+                                <p>{{status.djs}}</p>
+                                <p>设备故障数</p>
                             </div>
                         </div>
                     </div>
@@ -87,26 +87,46 @@ import { BmlMarkerClusterer } from 'vue-baidu-map';
 import BmMarker from 'vue-baidu-map/components/overlays/Marker';
 
 // 插入 100 个随机点
-const markers = [];
-for (let i = 0; i < 100; i++) {
-    const position = {
-        lng: Math.random() * 40 + 85,
-        lat: Math.random() * 30 + 21,
+const markers = [
+    {
+        lng: 33 + 85,
+        lat: 5 + 21,
         url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
         showFlag: false
-    };
-    const position1 = {
-        lng: Math.random() * 40 + 85,
-        lat: Math.random() * 30 + 21,
-        url: 'https://cdn.tipe.io/tipe/tipe-cat-no-text.svg',
+    },
+    {
+        lng: 30 + 85,
+        lat: 7 + 21,
+        url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
         showFlag: false
-    };
-    if (i % 2 === 0) {
-        markers.push(position);
-    } else {
-        markers.push(position1);
+    },
+    {
+        lng: 27 + 85,
+        lat: 6 + 21,
+        url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
+        showFlag: false
     }
-}
+];
+
+// for (let i = 0; i < 100; i++) {
+//     const position = {
+//         lng: Math.random() * 40 + 85,
+//         lat: Math.random() * 30 + 21,
+//         url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
+//         showFlag: false
+//     };
+//     const position1 = {
+//         lng: Math.random() * 40 + 85,
+//         lat: Math.random() * 30 + 21,
+//         url: 'https://cdn.tipe.io/tipe/tipe-cat-no-text.svg',
+//         showFlag: false
+//     };
+//     if (i % 2 === 0) {
+//         markers.push(position);
+//     } else {
+//         markers.push(position1);
+//     }
+// }
 const carList = [{}];
 export default {
     name: 'maps',
@@ -116,7 +136,9 @@ export default {
             map: '',
             markers,
             carList,
-            show: false
+            show: false,
+            deviceNum: 0,
+            status: {}
         };
     },
 
@@ -126,7 +148,10 @@ export default {
     },
 
     computed: {},
-
+    created() {
+        this.fetchDeviceNum();
+        this.fetchDeviceStatus();
+    },
     methods: {
         handler({ BMap, map }) {
             map.enableScrollWheelZoom(true);
@@ -146,6 +171,29 @@ export default {
         infoWindowOpen(marker) {
             marker.showFlag = true;
             console.log(marker);
+        },
+        //获取企业设备数量
+        fetchDeviceNum() {
+            axios({
+                method: 'get',
+                url: '/fetchDeviceNum'
+            })
+                .then(res => {
+                    this.deviceNum = res.data.data;
+                })
+                .catch();
+        },
+
+        //获取企业设备各种状态的数据
+        fetchDeviceStatus() {
+            axios({
+                method: 'get',
+                url: '/fetchDeviceStatus'
+            })
+                .then(res => {
+                    this.status = res.data;
+                })
+                .catch();
         }
     }
 };
@@ -171,14 +219,13 @@ export default {
     background-color: #eef1f6;
 }
 .info-one {
-    /* padding-top: 90px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
     line-height: 1.5;
     font-size: 26px;
     color: #333;
-}
-.info-one p:nth-child(1) {
-    margin-top: 45px;
 }
 .info-two,
 .info-three,

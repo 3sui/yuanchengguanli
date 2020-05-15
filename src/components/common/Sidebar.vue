@@ -94,18 +94,8 @@ export default {
                             // ]
                         },
                         {
-                            index: '1-2',
-                            title: '维修记录',
-                            subs: [
-                                {
-                                    index: 'MaintenanceRecords',
-                                    title: '维修记录'
-                                },
-                                {
-                                    index: 'MaintenanceDetails',
-                                    title: '维修记录详情'
-                                }
-                            ]
+                            index: 'MaintenanceRecords',
+                            title: '维修记录'
                         }
                     ]
                 },
@@ -115,18 +105,20 @@ export default {
                     title: '远程监控',
                     subs: [
                         {
-                            index: '2-1',
-                            title: '设备监控',
-                            subs: [
-                                {
-                                    index: 'EquipmentMonitoring',
-                                    title: '设备监控'
-                                },
-                                {
-                                    index: 'MeasuringPointDetails',
-                                    title: '测点详情'
-                                }
-                            ]
+                            // index: 'EquipmentMonitoring',
+                            index: 'DeviceList',
+
+                            title: '设备监控'
+                            // subs: [
+                            //     {
+                            //         index: 'EquipmentMonitoring',
+                            //         title: '设备监控'
+                            //     },
+                            //     {
+                            //         index: 'MeasuringPointDetails',
+                            //         title: '测点详情'
+                            //     }
+                            // ]
                         },
                         {
                             index: 'AlarmRecord',
@@ -136,28 +128,28 @@ export default {
                 },
                 {
                     icon: 'el-icon-lx-calendar',
-                    index: '3',
+                    index: 'ServiceBooklet',
                     title: '服务手册',
-                    subs: [
-                        {
-                            index: '3-1',
-                            title: '服务手册列表',
-                            subs: [
-                                {
-                                    index: 'ServiceBooklet',
-                                    title: '服务手册列表'
-                                },
-                                {
-                                    index: 'AddBooklet',
-                                    title: '添加'
-                                },
-                                {
-                                    index: 'ImportingBooklet',
-                                    title: '导入'
-                                }
-                            ]
-                        }
-                    ]
+                    // subs: [
+                    //     {
+                    //         index: '3-1',
+                    //         title: '服务手册列表',
+                    //         subs: [
+                    //             {
+                    //                 index: 'ServiceBooklet',
+                    //                 title: '服务手册列表'
+                    //             },
+                    //             {
+                    //                 index: 'AddBooklet',
+                    //                 title: '添加'
+                    //             },
+                    //             {
+                    //                 index: 'ImportingBooklet',
+                    //                 title: '导入'
+                    //             }
+                    //         ]
+                    //     }
+                    // ]
                 },
                 {
                     icon: 'el-icon-lx-calendar',
@@ -230,99 +222,99 @@ export default {
                             // ]
                         }
                     ]
-                },
+                }
 
                 //dome
 
-                {
-                    icon: 'el-icon-lx-cascades',
-                    index: 'table',
-                    title: '基础表格'
-                },
-                {
-                    icon: 'el-icon-lx-copy',
-                    index: 'tabs',
-                    title: 'tab选项卡'
-                },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: '6',
-                    title: '表单相关',
-                    subs: [
-                        {
-                            index: 'form',
-                            title: '基本表单'
-                        },
-                        {
-                            index: '6-2',
-                            title: '三级菜单',
-                            subs: [
-                                {
-                                    index: 'editor',
-                                    title: '富文本编辑器'
-                                },
-                                {
-                                    index: 'markdown',
-                                    title: 'markdown编辑器'
-                                }
-                            ]
-                        },
-                        {
-                            index: 'upload',
-                            title: '文件上传'
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-emoji',
-                    index: 'icon',
-                    title: '自定义图标'
-                },
-                {
-                    icon: 'el-icon-pie-chart',
-                    index: 'charts',
-                    title: 'schart图表'
-                },
-                {
-                    icon: 'el-icon-rank',
-                    index: '7',
-                    title: '拖拽组件',
-                    subs: [
-                        {
-                            index: 'drag',
-                            title: '拖拽列表'
-                        },
-                        {
-                            index: 'dialog',
-                            title: '拖拽弹框'
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-global',
-                    index: 'i18n',
-                    title: '国际化功能'
-                },
-                {
-                    icon: 'el-icon-lx-warn',
-                    index: '8',
-                    title: '错误处理',
-                    subs: [
-                        {
-                            index: 'permission',
-                            title: '权限测试'
-                        },
-                        {
-                            index: '404',
-                            title: '404页面'
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-redpacket_fill',
-                    index: '/donate',
-                    title: '支持作者'
-                }
+                // {
+                //     icon: 'el-icon-lx-cascades',
+                //     index: 'table',
+                //     title: '基础表格'
+                // },
+                // {
+                //     icon: 'el-icon-lx-copy',
+                //     index: 'tabs',
+                //     title: 'tab选项卡'
+                // },
+                // {
+                //     icon: 'el-icon-lx-calendar',
+                //     index: '6',
+                //     title: '表单相关',
+                //     subs: [
+                //         {
+                //             index: 'form',
+                //             title: '基本表单'
+                //         },
+                //         {
+                //             index: '6-2',
+                //             title: '三级菜单',
+                //             subs: [
+                //                 {
+                //                     index: 'editor',
+                //                     title: '富文本编辑器'
+                //                 },
+                //                 {
+                //                     index: 'markdown',
+                //                     title: 'markdown编辑器'
+                //                 }
+                //             ]
+                //         },
+                //         {
+                //             index: 'upload',
+                //             title: '文件上传'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-emoji',
+                //     index: 'icon',
+                //     title: '自定义图标'
+                // },
+                // {
+                //     icon: 'el-icon-pie-chart',
+                //     index: 'charts',
+                //     title: 'schart图表'
+                // },
+                // {
+                //     icon: 'el-icon-rank',
+                //     index: '7',
+                //     title: '拖拽组件',
+                //     subs: [
+                //         {
+                //             index: 'drag',
+                //             title: '拖拽列表'
+                //         },
+                //         {
+                //             index: 'dialog',
+                //             title: '拖拽弹框'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-global',
+                //     index: 'i18n',
+                //     title: '国际化功能'
+                // },
+                // {
+                //     icon: 'el-icon-lx-warn',
+                //     index: '8',
+                //     title: '错误处理',
+                //     subs: [
+                //         {
+                //             index: 'permission',
+                //             title: '权限测试'
+                //         },
+                //         {
+                //             index: '404',
+                //             title: '404页面'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-redpacket_fill',
+                //     index: '/donate',
+                //     title: '支持作者'
+                // }
             ]
         };
     },
