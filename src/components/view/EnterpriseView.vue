@@ -16,109 +16,111 @@
             </el-breadcrumb>
         </div>
         <div class="container">
-            <div class="navbar mb-20">
+            <!-- <div class="navbar mb-20">
                 <span class="active">设备分析</span>
                 <span>行业分析</span>
                 <span>故障分析</span>
-                <span>收入分析</span>
-            </div>
-            <div class="schart-box">
-                <!-- <div class="content-title">折线图</div> -->
-                <schart class="schart" canvasId="line" :options="options2"></schart>
-            </div>
-            <div class="product-status">
-                <el-input v-model="query.name" placeholder="请输入关键字" class="handle-input mr10"></el-input>
-                <el-select v-model="query.address" placeholder="请选择省" class="handle-select mr10">
-                    <el-option key="1" label="江苏省" value="江苏省"></el-option>
-                </el-select>
-                <el-select v-model="query.address" placeholder="请选择市" class="handle-select mr10">
-                    <el-option key="1" label="常州市" value="常州市"></el-option>
-                </el-select>
-                <el-select v-model="query.address" placeholder="请选择区" class="handle-select mr10">
-                    <el-option key="1" label="天宁区" value="天宁区"></el-option>
-                </el-select>
-                <div class="block">
-                    <el-date-picker
-                        class="mr10"
-                        v-model="value2"
-                        type="daterange"
-                        align="right"
-                        unlink-panels
-                        range-separator="至"
-                        start-placeholder="开始日期"
-                        end-placeholder="结束日期"
-                        :picker-options="pickerOptions"
-                    ></el-date-picker>
+            </div> -->
+
+            <div id="devicearea">
+                <el-row :gutter="20">
+                    <el-col :span="8">
+                        <div class="schart-box">
+                            <schart class="schart" canvasId="line1" :options="options1"></schart>
+                        </div>
+                    </el-col>
+                    <el-col :span="8">
+                        <div class="schart-box">
+                            <schart class="schart" canvasId="line2" :options="options2"></schart>
+                        </div>
+                    </el-col>
+                    <el-col :span="8">
+                        <div class="schart-box">
+                            <schart class="schart" canvasId="line3" :options="options3"></schart>
+                        </div>
+                    </el-col>
+                </el-row>
+                <div class="product-status">
+                    <el-input v-model="query.name" placeholder="设备分析" class="handle-input mr10"></el-input>
+                    <el-select
+                        v-model="query.address"
+                        placeholder="请选择省"
+                        class="handle-select mr10"
+                    >
+                        <el-option key="1" label="江苏省" value="江苏省"></el-option>
+                    </el-select>
+                    <el-select
+                        v-model="query.address"
+                        placeholder="请选择市"
+                        class="handle-select mr10"
+                    >
+                        <el-option key="1" label="常州市" value="常州市"></el-option>
+                    </el-select>
+                    <el-select
+                        v-model="query.address"
+                        placeholder="请选择区"
+                        class="handle-select mr10"
+                    >
+                        <el-option key="1" label="天宁区" value="天宁区"></el-option>
+                    </el-select>
+                    <div class="block">
+                        <el-date-picker
+                            class="mr10"
+                            v-model="value2"
+                            type="daterange"
+                            align="right"
+                            unlink-panels
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            :picker-options="pickerOptions"
+                        ></el-date-picker>
+                    </div>
+                    <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                    <el-button
+                        style="float: right"
+                        type="primary"
+                        icon="el-icon-search"
+                        @click="handleSearch"
+                    >导出</el-button>
                 </div>
-                <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
-                <el-button
-                    style="float: right"
-                    type="primary"
-                    icon="el-icon-search"
-                    @click="handleSearch"
-                >导出</el-button>
-            </div>
-            <el-table
-                :data="tableData"
-                border
-                class="table"
-                ref="multipleTable"
-                header-cell-class-name="table-header"
-                @selection-change="handleSelectionChange"
-            >
-                <!-- <el-table-column type="selection" width="55" align="center"></el-table-column> -->
-                <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
-                <el-table-column prop="name" label="年"></el-table-column>
-                <el-table-column prop="name" label="月份"></el-table-column>
-                <el-table-column prop="name" label="企业名称"></el-table-column>
-                <el-table-column prop="name" label="设备种类"></el-table-column>
-                <el-table-column prop="name" label="设备名称"></el-table-column>
-                <el-table-column prop="name" label="型号描述"></el-table-column>
-                <el-table-column prop="name" label="已安装数量"></el-table-column>
-                <el-table-column prop="name" label="安装地址(省)"></el-table-column>
-                <el-table-column prop="name" label="安装地址(市)"></el-table-column>
-                <el-table-column prop="name" label="安装地址(区)"></el-table-column>
-                <el-table-column label="操作" width="180" align="center">
-                    <template slot-scope="scope">
-                        <el-button
-                            type="text"
-                            icon="el-icon-edit"
-                            @click="handleEdit(scope.$index, scope.row)"
-                        >编辑</el-button>
-                        <el-button
-                            type="text"
-                            icon="el-icon-delete"
-                            class="red"
-                            @click="handleDelete(scope.$index, scope.row)"
-                        >删除</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-            <div class="pagination">
-                <el-pagination
-                    background
-                    layout="total, prev, pager, next"
-                    :current-page="query.pageIndex"
-                    :page-size="query.pageSize"
-                    :total="pageTotal"
-                    @current-change="handlePageChange"
-                ></el-pagination>
+                <el-table
+                    :data="tableData"
+                    border
+                    class="table"
+                    ref="multipleTable"
+                    header-cell-class-name="table-header"
+                >
+                    <!-- <el-table-column type="selection" width="55" align="center"></el-table-column> -->
+                    <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
+                    <el-table-column prop="name" label="年"></el-table-column>
+                    <el-table-column prop="name" label="月份"></el-table-column>
+                    <el-table-column prop="name" label="企业名称"></el-table-column>
+                    <el-table-column prop="name" label="设备种类"></el-table-column>
+                    <el-table-column prop="name" label="设备名称"></el-table-column>
+                    <el-table-column prop="name" label="型号描述"></el-table-column>
+                    <el-table-column prop="name" label="已安装数量"></el-table-column>
+                    <el-table-column prop="name" label="安装地址(省)"></el-table-column>
+                    <el-table-column prop="name" label="安装地址(市)"></el-table-column>
+                    <el-table-column prop="name" label="安装地址(区)"></el-table-column>
+                    <el-table-column label="操作" width="180" align="center">
+                        <template slot-scope="scope">
+                            <el-button type="text" icon="el-icon-eye">详情</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <div class="pagination">
+                    <el-pagination
+                        background
+                        layout="total, prev, pager, next"
+                        :current-page="query.pageIndex"
+                        :page-size="query.pageSize"
+                        :total="pageTotal"
+                        @current-change="handlePageChange"
+                    ></el-pagination>
+                </div>
             </div>
         </div>
-        <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
-            <el-form ref="form" :model="form" label-width="70px">
-                <el-form-item label="用户名">
-                    <el-input v-model="form.name"></el-input>
-                </el-form-item>
-                <el-form-item label="地址">
-                    <el-input v-model="form.address"></el-input>
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="editVisible = false">取 消</el-button>
-                <el-button type="primary" @click="saveEdit">确 定</el-button>
-            </span>
-        </el-dialog>
     </div>
 </template>
  
@@ -130,21 +132,52 @@ export default {
     name: 'EnterpriseView',
     data() {
         return {
+           
+            options1: {
+                type: 'bar',
+                title: {
+                    text: '设备分析'
+                },
+                bgColor: '#fff',
+                labels: ['干燥设备', '液压设备', '数控机床'],
+                datasets: [
+                    {
+                        label: '设备类型',
+                        data: [334, 278, 190]
+                    }
+                ],
+                width: '100%'
+            },
             options2: {
                 type: 'bar',
                 title: {
-                    text: 'xx企业设备分析'
+                    text: '行业分析'
                 },
                 bgColor: '#fff',
-                labels: [1, 2, 3, 4, 5],
+                labels: ['纺织业', '化工业', '干燥业'],
                 datasets: [
                     {
-                        label: '温度',
-                        data: [234, 278, 270, 190, 230]
+                        label: '行业类型',
+                        data: [23, 47, 132],
+                        fillColor:['#FD5F2F']
                     }
                 ],
-                // leftPadding: 50,
-                // rightPadding: 50,
+                width: '100%'
+            },
+            options3: {
+                type: 'bar',
+                title: {
+                    text: '故障分析'
+                },
+                bgColor: '#fff',
+                labels: ['断电', '零件损耗', '操作失误'],
+                datasets: [
+                    {
+                        label: '故障类型',
+                        data: [23, 47, 132],
+                        fillColor:['#ccc']
+                    }
+                ],
                 width: '100%'
             },
             pickerOptions: {
@@ -219,44 +252,7 @@ export default {
             this.$set(this.query, 'pageIndex', 1);
             this.getData();
         },
-        // 删除操作
-        handleDelete(index, row) {
-            // 二次确认删除
-            this.$confirm('确定要删除吗？', '提示', {
-                type: 'warning'
-            })
-                .then(() => {
-                    this.$message.success('删除成功');
-                    this.tableData.splice(index, 1);
-                })
-                .catch(() => {});
-        },
-        // 多选操作
-        handleSelectionChange(val) {
-            this.multipleSelection = val;
-        },
-        delAllSelection() {
-            const length = this.multipleSelection.length;
-            let str = '';
-            this.delList = this.delList.concat(this.multipleSelection);
-            for (let i = 0; i < length; i++) {
-                str += this.multipleSelection[i].name + ' ';
-            }
-            this.$message.error(`删除了${str}`);
-            this.multipleSelection = [];
-        },
-        // 编辑操作
-        handleEdit(index, row) {
-            this.idx = index;
-            this.form = row;
-            this.editVisible = true;
-        },
-        // 保存编辑
-        saveEdit() {
-            this.editVisible = false;
-            this.$message.success(`修改第 ${this.idx + 1} 行成功`);
-            this.$set(this.tableData, this.idx, this.form);
-        },
+
         // 分页导航
         handlePageChange(val) {
             this.$set(this.query, 'pageIndex', val);

@@ -30,6 +30,7 @@ import vSidebar from './Sidebar.vue';
 import vTags from './Tags.vue';
 import bus from './bus';
 export default {
+  
     data() {
         return {
             tagsList: ['MeasuringPointDetails'],
