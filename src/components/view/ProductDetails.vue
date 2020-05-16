@@ -325,6 +325,15 @@ export default {
                     this.tableData = res.data;
                 })
                 .catch();
+        },
+        getMaintenanceRecords() {
+            axios({
+                methods: 'get',
+                url: 'getMaintenanceRecords',
+                params: {
+                    id: this.$route.query.id
+                }
+            });
         }
     }
 };

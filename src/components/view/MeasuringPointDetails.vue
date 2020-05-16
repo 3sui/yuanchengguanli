@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-07 10:52:41
- * @LastEditTime: 2020-05-12 17:41:17
+ * @LastEditTime: 2020-05-15 15:20:15
  * @LastEditors: Please set LastEditors
  * @Description: 测点详情
  * @FilePath: \vue-manage-system\src\components\view\MeasuringPointDetails.vue
@@ -17,6 +17,12 @@
             </el-breadcrumb>
         </div>
         <div class="container">
+            <el-button
+                type="primary"
+                icon="el-icon-delete"
+                class="handle-del mr10 mb-30"
+                @click="$router.go(-1)"
+            >返回</el-button>
             <div class>
                 <div class="schart-box">
                     <!-- <div class="content-title">折线图</div> -->
