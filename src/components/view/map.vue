@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-04-28 16:25:21
- * @LastEditTime: 2020-05-11 11:26:21
+ * @LastEditTime: 2020-05-17 14:25:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \远程监控平台\vue-manage-system\src\components\page\map.vue
@@ -29,17 +29,15 @@
                                         @click="infoWindowOpen(marker)"
                                     >
                                         <bm-info-window
-                                            title="弹窗信息"
+                                            title="设备信息"
                                             :position="{lng: marker.lng, lat: marker.lat}"
                                             :show="marker.showFlag"
                                             @close="infoWindowClose(marker)"
                                             @open="infoWindowOpen(marker)"
                                         >
-                                            <p>123456789</p>
-                                            <p>123456789</p>
-                                            <p>123456789</p>
-                                            <p>123456789</p>
-                                            <p>123456789</p>
+                                            <p>公司: {{marker.company}}</p>
+                                            <p>地址: {{marker.address}}</p>
+                                            <p>设备ID: {{marker.deviceId}}</p>
                                         </bm-info-window>
                                     </bm-marker>
                                 </div>
@@ -54,21 +52,25 @@
                             <p>设备数量</p>
                         </div>
                         <div class="info-two">
-                            <el-progress type="circle" :percentage="status.yxs*2"></el-progress>
+                            <el-progress type="circle" :percentage="status.yxs*2" v-if="status.yxs"></el-progress>
                             <div>
                                 <p>{{status.yxs}}</p>
                                 <p>运行设备数</p>
                             </div>
                         </div>
                         <div class="info-three">
-                            <el-progress type="circle" :percentage="(deviceNum-status.yxs)*2"></el-progress>
+                            <el-progress
+                                type="circle"
+                                :percentage="(deviceNum-status.yxs)*2"
+                                v-if="status.yxs"
+                            ></el-progress>
                             <div>
                                 <p>{{deviceNum-status.yxs}}</p>
                                 <p>关机设备数</p>
                             </div>
                         </div>
                         <div class="info-four">
-                            <el-progress type="circle" :percentage="status.djs*2"></el-progress>
+                            <el-progress type="circle" :percentage="status.djs*2" v-if="status.yxs"></el-progress>
                             <div>
                                 <p>{{status.djs}}</p>
                                 <p>设备故障数</p>
@@ -89,21 +91,32 @@ import BmMarker from 'vue-baidu-map/components/overlays/Marker';
 // 插入 100 个随机点
 const markers = [
     {
-        lng: 33 + 85,
-        lat: 5 + 21,
+        lng: 119.946973,
+        lat: 31.772752,
         url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
+        company: '江苏常州华丽液压润滑设备有限公司',
+        address: '中国 江苏 常州市 三河口',
+        deviceId: '10000093803899',
+
         showFlag: false
     },
     {
-        lng: 30 + 85,
-        lat: 7 + 21,
+        lng: 119.946973,
+        lat: 31.772752,
         url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
+        company: '江苏常州华丽液压润滑设备有限公司',
+        address: '中国 江苏 常州市 三河口',
+        deviceId: '10000093803934',
+
         showFlag: false
     },
     {
-        lng: 27 + 85,
-        lat: 6 + 21,
+        lng: 119.946973,
+        lat: 31.772752,
         url: 'http://developer.baidu.com/map/jsdemo/img/fox.gif',
+        company: '江苏常州华丽液压润滑设备有限公司',
+        address: '中国 江苏 常州市 三河口',
+        deviceId: '10000093803937',
         showFlag: false
     }
 ];
@@ -170,6 +183,11 @@ export default {
         // 如果在 bm-info-window 上写了 @open 在点击marker时会触发两次infoWindowOpen函数，而且可以很明显的看到有延时
         infoWindowOpen(marker) {
             marker.showFlag = true;
+            axios({
+                method: 'get',
+                url: 'getDeviceInfo',
+                query: ''
+            });
             console.log(marker);
         },
         //获取企业设备数量

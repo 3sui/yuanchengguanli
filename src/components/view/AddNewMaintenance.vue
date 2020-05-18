@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 14:19:13
- * @LastEditTime: 2020-05-11 17:51:11
+ * @LastEditTime: 2020-05-16 12:07:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\view\AddNewProduct.vue
@@ -17,6 +17,8 @@
             </el-breadcrumb>
         </div>
         <div class="container">
+            <el-button type="primary" @click="$router.go(-1)">返回</el-button>
+
             <div class="form-box">
                 <el-form ref="form" :model="form" label-width="120px">
                     <el-form-item label="设备ID" prop="DeviceID">

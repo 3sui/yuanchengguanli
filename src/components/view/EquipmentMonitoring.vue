@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 16:21:18
- * @LastEditTime: 2020-05-12 16:46:34
+ * @LastEditTime: 2020-05-16 12:41:20
  * @LastEditors: Please set LastEditors
  * @Description: 设备监控
  * @FilePath: \vue-manage-system\src\components\view\EquipmentMonitoring.vue
@@ -20,14 +20,14 @@
         <div class="container">
             <div class="handle-box">
                 <el-row>
-                    <el-col :span="18">
+                    <el-col>
                         <div class="product-status">
                             <el-input
                                 v-model="query.name"
                                 placeholder="请输入关键字"
                                 class="handle-input mr10"
                             ></el-input>
-                            <el-select
+                            <!-- <el-select
                                 v-model="query.address"
                                 placeholder="设备种类"
                                 class="handle-select mr10"
@@ -58,9 +58,14 @@
                                 start-placeholder="开始日期"
                                 end-placeholder="结束日期"
                                 :picker-options="pickerOptions"
-                            ></el-date-picker>
+                            ></el-date-picker>-->
                             <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
-
+                            <el-button
+                                type="primary"
+                                plain
+                                icon="el-icon-refresh"
+                                @click="refresh"
+                            >重置</el-button>
                             <el-button
                                 type="primary"
                                 icon="el-icon-delete"
@@ -279,8 +284,21 @@ export default {
         },
         // 触发搜索按钮
         handleSearch() {
-            this.$set(this.query, 'pageIndex', 1);
-            this.getData();
+            this.tableData = this.tableData.filter((item, index) => {
+                // return item.Address == '竹林北路256号';
+                for (let key in item) {
+                    // window.console.log(i, item[i]);
+                    if ((item[key] + '').includes(this.query.msg)) {
+                        return true;
+                    }
+                }
+            });
+        },
+
+       // 触发重置按钮
+        refresh() {
+            this.getData()
+            this.query.msg = ''
         },
         // 删除操作
         handleDelete(index, row) {
@@ -402,7 +420,7 @@ export default {
 .product-status {
     margin-bottom: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .mt-10 {
     margin-bottom: 10px;

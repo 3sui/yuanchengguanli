@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-04-28 15:28:09
- * @LastEditTime: 2020-05-13 17:24:01
+ * @LastEditTime: 2020-05-16 10:56:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\main.js
@@ -9,7 +9,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
-//import './plugins/axios'
+import './plugins/axios'
 
 import ElementUI from 'element-ui';
 import VueI18n from 'vue-i18n';

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-07 15:48:38
- * @LastEditTime: 2020-05-07 16:32:59
+ * @LastEditTime: 2020-05-17 14:37:54
  * @LastEditors: Please set LastEditors
  * @Description: 企业视图
  * @FilePath: \vue-manage-system\src\components\view\EnterpriseView.vue
@@ -24,7 +24,7 @@
 
             <div id="devicearea">
                 <el-row :gutter="20">
-                    <el-col :span="8">
+                    <!-- <el-col :span="8">
                         <div class="schart-box">
                             <schart class="schart" canvasId="line1" :options="options1"></schart>
                         </div>
@@ -33,14 +33,14 @@
                         <div class="schart-box">
                             <schart class="schart" canvasId="line2" :options="options2"></schart>
                         </div>
-                    </el-col>
-                    <el-col :span="8">
+                    </el-col> -->
+                    <el-col>
                         <div class="schart-box">
                             <schart class="schart" canvasId="line3" :options="options3"></schart>
                         </div>
                     </el-col>
                 </el-row>
-                <div class="product-status">
+                <!-- <div class="product-status">
                     <el-input v-model="query.name" placeholder="设备分析" class="handle-input mr10"></el-input>
                     <el-select
                         v-model="query.address"
@@ -91,7 +91,7 @@
                     ref="multipleTable"
                     header-cell-class-name="table-header"
                 >
-                    <!-- <el-table-column type="selection" width="55" align="center"></el-table-column> -->
+                    <el-table-column type="selection" width="55" align="center"></el-table-column>
                     <el-table-column prop="id" label="序号" width="55" align="center"></el-table-column>
                     <el-table-column prop="name" label="年"></el-table-column>
                     <el-table-column prop="name" label="月份"></el-table-column>
@@ -118,7 +118,7 @@
                         :total="pageTotal"
                         @current-change="handlePageChange"
                     ></el-pagination>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -133,37 +133,37 @@ export default {
     data() {
         return {
            
-            options1: {
-                type: 'bar',
-                title: {
-                    text: '设备分析'
-                },
-                bgColor: '#fff',
-                labels: ['干燥设备', '液压设备', '数控机床'],
-                datasets: [
-                    {
-                        label: '设备类型',
-                        data: [334, 278, 190]
-                    }
-                ],
-                width: '100%'
-            },
-            options2: {
-                type: 'bar',
-                title: {
-                    text: '行业分析'
-                },
-                bgColor: '#fff',
-                labels: ['纺织业', '化工业', '干燥业'],
-                datasets: [
-                    {
-                        label: '行业类型',
-                        data: [23, 47, 132],
-                        fillColor:['#FD5F2F']
-                    }
-                ],
-                width: '100%'
-            },
+            // options1: {
+            //     type: 'bar',
+            //     title: {
+            //         text: '设备分析'
+            //     },
+            //     bgColor: '#fff',
+            //     labels: ['干燥设备', '液压设备', '数控机床'],
+            //     datasets: [
+            //         {
+            //             label: '设备类型',
+            //             data: [334, 278, 190]
+            //         }
+            //     ],
+            //     width: '100%'
+            // },
+            // options2: {
+            //     type: 'bar',
+            //     title: {
+            //         text: '行业分析'
+            //     },
+            //     bgColor: '#fff',
+            //     labels: ['纺织业', '化工业', '干燥业'],
+            //     datasets: [
+            //         {
+            //             label: '行业类型',
+            //             data: [23, 47, 132],
+            //             fillColor:['#FD5F2F']
+            //         }
+            //     ],
+            //     width: '100%'
+            // },
             options3: {
                 type: 'bar',
                 title: {

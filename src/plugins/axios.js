@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-05-08 10:56:38
- * @LastEditTime: 2020-05-08 15:00:09
- * @LastEditors: your name
+ * @LastEditTime: 2020-05-17 22:49:02
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\plugins\axios.js
  */
@@ -17,10 +17,12 @@ import axios from "axios";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://127.0.0.1:9999',
+  // baseURL: 'http://58.216.47.110:9999',
+
   // baseURL: process.env.baseURL || process.env.apiUrl || "",
   // timeout: 60 * 1000, // Timeout
-  withCredentials: true // Check cross-site Access-Control
+  // withCredentials: true // Check cross-site Access-Control
 };
 
 const _axios = axios.create(config);

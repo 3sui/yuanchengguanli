@@ -160,10 +160,10 @@ export default {
                             index: 'EnterpriseView',
                             title: '企业视图'
                         },
-                        {
-                            index: 'AdminView',
-                            title: '管理员视图'
-                        }
+                        // {
+                        //     index: 'AdminView',
+                        //     title: '管理员视图'
+                        // }
                     ]
                 },
                 // {

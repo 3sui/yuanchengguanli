@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 09:29:23
- * @LastEditTime: 2020-05-12 10:54:41
+ * @LastEditTime: 2020-05-17 17:15:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\page\ProductList.vue
@@ -13,9 +13,7 @@
                 <el-breadcrumb-item>
                     <i class="el-icon-lx-cascades"></i> 产品档案
                 </el-breadcrumb-item>
-                <el-breadcrumb-item>
-                    产品列表
-                </el-breadcrumb-item>
+                <el-breadcrumb-item>产品列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -29,8 +27,6 @@
                                 class="handle-del mr10"
                                 @click="$router.push('./addnewproduct')"
                             >新增</el-button>
-                        </div>
-                        <div>
                             <el-button
                                 type="primary"
                                 icon="el-icon-delete"
@@ -38,9 +34,10 @@
                                 @click="delAllSelection"
                             >批量删除</el-button>
                         </div>
+                        <div></div>
                     </el-col>
                     <el-col :span="18">
-                        <div class="product-status">
+                        <!-- <div class="product-status">
                             <el-select
                                 v-model="query.province"
                                 placeholder="请选择省"
@@ -83,14 +80,14 @@
                             >
                                 <el-option key="1" label="开机" value="开机"></el-option>
                             </el-select>
-                        </div>
+                        </div>-->
                         <div class="product-status">
                             <el-input
                                 v-model="query.msg"
                                 placeholder="请输入关键字"
                                 class="handle-input mr10"
                             ></el-input>
-                            <div class="block">
+                            <!-- <div class="block">
                                 <el-date-picker
                                     v-model="query.date"
                                     type="daterange"
@@ -101,8 +98,14 @@
                                     end-placeholder="结束日期"
                                     :picker-options="pickerOptions"
                                 ></el-date-picker>
-                            </div>
+                            </div>-->
                             <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                            <el-button
+                                type="primary"
+                                plain
+                                icon="el-icon-refresh"
+                                @click="refresh"
+                            >重置</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -314,9 +317,21 @@ export default {
 
         // 触发搜索按钮
         handleSearch() {
-            this.$set(this.query, 'pageIndex', 1);
+            this.tableData = this.tableData.filter((item, index) => {
+                // return item.Address == '竹林北路256号';
+                for (let key in item) {
+                    // window.console.log(i, item[i]);
+                    if ((item[key] + '').includes(this.query.msg)) {
+                        return true;
+                    }
+                }
+            });
+        },
+
+        // 触发重置按钮
+        refresh() {
             this.getData();
-            window.console.log(this.query);
+            this.query.msg = '';
         },
 
         // 删除操作
@@ -369,7 +384,7 @@ export default {
             window.console.log(idArr);
             if (this.multipleSelection.length === 0) {
                 this.$message.warning('请选择需要删除的项');
-                return
+                return;
             }
             this.$confirm('确定要删除吗？', '提示', {
                 type: 'warning'
@@ -446,7 +461,7 @@ export default {
 .product-status {
     margin-bottom: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .mt-10 {
     margin-bottom: 10px;

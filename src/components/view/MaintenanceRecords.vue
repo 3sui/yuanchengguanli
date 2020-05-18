@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-06 15:04:18
- * @LastEditTime: 2020-05-11 17:25:48
+ * @LastEditTime: 2020-05-16 12:38:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-manage-system\src\components\view\MaintenanceRecords.vue
@@ -13,9 +13,7 @@
                 <el-breadcrumb-item>
                     <i class="el-icon-lx-cascades"></i> 产品档案
                 </el-breadcrumb-item>
-                <el-breadcrumb-item>
-                    维修记录
-                </el-breadcrumb-item>
+                <el-breadcrumb-item>维修记录</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -29,8 +27,6 @@
                                 class="handle-del mr10"
                                 @click="$router.push('./addNewMaintenance')"
                             >新增</el-button>
-                        </div>
-                        <div>
                             <el-button
                                 type="primary"
                                 icon="el-icon-delete"
@@ -38,9 +34,10 @@
                                 @click="delAllSelection"
                             >批量删除</el-button>
                         </div>
+                        <div></div>
                     </el-col>
                     <el-col :span="18">
-                        <div class="product-status">
+                        <!-- <div class="product-status">
                             <el-select
                                 v-model="query.address"
                                 placeholder="请选择省"
@@ -83,14 +80,14 @@
                             >
                                 <el-option key="1" label="开机" value="开机"></el-option>
                             </el-select>
-                        </div>
+                        </div>-->
                         <div class="product-status">
                             <el-input
                                 v-model="query.name"
                                 placeholder="请输入关键字"
                                 class="handle-input mr10"
                             ></el-input>
-                            <div class="block">
+                            <!-- <div class="block">
                                 <el-date-picker
                                     v-model="value2"
                                     type="daterange"
@@ -101,8 +98,14 @@
                                     end-placeholder="结束日期"
                                     :picker-options="pickerOptions"
                                 ></el-date-picker>
-                            </div>
+                            </div>-->
                             <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                            <el-button
+                                type="primary"
+                                plain
+                                icon="el-icon-refresh"
+                                @click="refresh"
+                            >重置</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -284,9 +287,23 @@ export default {
 
         // 触发搜索按钮
         handleSearch() {
-            this.$set(this.query, 'pageIndex', 1);
-            this.getData();
+            this.tableData = this.tableData.filter((item, index) => {
+                // return item.Address == '竹林北路256号';
+                for (let key in item) {
+                    // window.console.log(i, item[i]);
+                    if ((item[key] + '').includes(this.query.msg)) {
+                        return true;
+                    }
+                }
+            });
         },
+
+      // 触发重置按钮
+        refresh() {
+            this.getData()
+            this.query.msg = ''
+        },
+
         // 删除操作
         handleDelete(index, row) {
             let idArr = [];
@@ -404,7 +421,7 @@ export default {
 .product-status {
     margin-bottom: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 .mt-10 {
     margin-bottom: 10px;

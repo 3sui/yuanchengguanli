@@ -8,7 +8,7 @@
                             <div class="grid-content grid-con-1">
                                 <i class="el-icon-monitor grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">1234</div>
+                                    <div class="grid-num">{{deviceNum}}</div>
                                     <div>设备数</div>
                                 </div>
                             </div>
@@ -19,7 +19,7 @@
                             <div class="grid-content grid-con-2">
                                 <i class="el-icon-video-play grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">321</div>
+                                    <div class="grid-num">{{status.yxs}}</div>
                                     <div>运行数</div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                             <div class="grid-content grid-con-3">
                                 <i class="el-icon-bell grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">5000</div>
+                                    <div class="grid-num">{{status.gzs}}</div>
                                     <div>故障数</div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                             <div class="grid-content grid-con-4">
                                 <i class="el-icon-video-pause grid-con-icon"></i>
                                 <div class="grid-cont-right">
-                                    <div class="grid-num">5000</div>
+                                    <div class="grid-num">{{deviceNum-status.yxs}}</div>
                                     <div>待机数</div>
                                 </div>
                             </div>
@@ -62,52 +62,109 @@
             </el-col>
             <el-col :span="16">
                 <el-row :gutter="20" class="mgb20">
-                     <el-col :span="24">
-                    <el-card shadow="hover">
-                        <schart ref="bar" class="schart" canvasId="bar" :options="options"></schart>
-                    </el-card>
+                    <el-col :span="24">
+                        <el-card shadow="hover">
+                            <schart ref="bar" class="schart" canvasId="bar" :options="options"></schart>
+                        </el-card>
                     </el-col>
                 </el-row>
-                <el-row :gutter="20" class="mgb20">
-                     <el-col :span="24">
-                     <el-card shadow="hover">
-                    <schart ref="line" class="schart" canvasId="line" :options="options2"></schart>
-                     </el-card>
-                     </el-col>
-                </el-row>            
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <el-card shadow="hover" style="height:342px;">
+                            <div slot="header" class="clearfix">
+                                <span>报警</span>
+                                <!-- <el-button style="float: right; padding: 3px 0" type="text">添加</el-button> -->
+                            </div>
+                            <el-tabs v-model="message">
+                                <el-tab-pane :label="`未读消息(${unread.length})`" name="first">
+                                    <el-table
+                                        :data="unread"
+                                        :show-header="false"
+                                        style="width: 100%"
+                                    >
+                                        <el-table-column>
+                                            <template slot-scope="scope">
+                                                <span class="message-title">{{scope.row.title}}</span>
+                                            </template>
+                                        </el-table-column>
+                                        <el-table-column prop="date" width="180"></el-table-column>
+                                        <el-table-column width="120">
+                                            <template slot-scope="scope">
+                                                <el-button
+                                                    size="small"
+                                                    @click="handleRead(scope.$index)"
+                                                >标为已读</el-button>
+                                            </template>
+                                        </el-table-column>
+                                    </el-table>
+                                    <!-- <div class="handle-row">
+                                        <el-button type="primary">全部标为已读</el-button>
+                                    </div>-->
+                                </el-tab-pane>
+                                <el-tab-pane :label="`已读消息(${read.length})`" name="second">
+                                    <template v-if="message === 'second'">
+                                        <el-table
+                                            :data="read"
+                                            :show-header="false"
+                                            style="width: 100%"
+                                        >
+                                            <el-table-column>
+                                                <template slot-scope="scope">
+                                                    <span class="message-title">{{scope.row.title}}</span>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column prop="date" width="150"></el-table-column>
+                                            <el-table-column width="120">
+                                                <template slot-scope="scope">
+                                                    <el-button
+                                                        type="danger"
+                                                        @click="handleDel(scope.$index)"
+                                                    >删除</el-button>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table>
+                                        <!-- <div class="handle-row">
+                                            <el-button type="danger">删除全部</el-button>
+                                        </div>-->
+                                    </template>
+                                </el-tab-pane>
+                                <el-tab-pane :label="`回收站(${recycle.length})`" name="third">
+                                    <template v-if="message === 'third'">
+                                        <el-table
+                                            :data="recycle"
+                                            :show-header="false"
+                                            style="width: 100%"
+                                        >
+                                            <el-table-column>
+                                                <template slot-scope="scope">
+                                                    <span class="message-title">{{scope.row.title}}</span>
+                                                </template>
+                                            </el-table-column>
+                                            <el-table-column prop="date" width="150"></el-table-column>
+                                            <el-table-column width="120">
+                                                <template slot-scope="scope">
+                                                    <el-button
+                                                        @click="handleRestore(scope.$index)"
+                                                    >还原</el-button>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table>
+                                        <!-- <div class="handle-row">
+                                            <el-button type="danger">清空回收站</el-button>
+                                        </div>-->
+                                    </template>
+                                </el-tab-pane>
+                            </el-tabs>
+                        </el-card>
+                    </el-col>
+                </el-row>
             </el-col>
         </el-row>
         <el-row>
-             <el-card shadow="hover" style="height:412px;">
-                    <div slot="header" class="clearfix">
-                        <span>报警</span>
-                        <!-- <el-button style="float: right; padding: 3px 0" type="text">添加</el-button> -->
-                    </div>
-                    <el-table :show-header="false" :data="todoList" style="width:100%;">
-                        <el-table-column width="40">
-                            <template slot-scope="scope">
-                                <el-checkbox v-model="scope.row.status"></el-checkbox>
-                            </template>
-                        </el-table-column>
-                        <el-table-column>
-                            <template slot-scope="scope">
-                                <div
-                                    class="todo-item"
-                                    :class="{'todo-item-del': scope.row.status}"
-                                >{{scope.row.title}}</div>
-                            </template>
-                        </el-table-column>
-                        <el-table-column width="200" align="center">
-                            <template slot-scope="scope">
-                                <!-- <i class="el-icon-edit"></i>
-                                <i class="el-icon-delete"></i>-->
-                                <span>{{scope.row.alarmTime}}</span>
-                            </template>
-                        </el-table-column>
-                    </el-table>
-                </el-card>
+            <el-card shadow="hover">
+                <schart ref="line" class="schart" canvasId="line" :options="options2"></schart>
+            </el-card>
         </el-row>
-       
     </div>
 </template>
 
@@ -119,79 +176,134 @@ export default {
 
     data() {
         return {
-            name: localStorage.getItem('ms_username'),
-            todoList: [
+            message: 'first',
+            showHeader: false,
+            unread: [
                 {
-                    title: '设备1温度过高',
-                    status: false,
-                    alarmTime: '2020-05-15 14:00:00'
+                    date: '2018-04-19 20:00:00',
+                    title: '设备1温度过高'
                 },
                 {
-                    title: '设备2温度过高',
-                    status: true,
-                    alarmTime: '2020-05-15 14:00:00'
+                    date: '2018-04-19 21:00:00',
+                    title: '设备2温度过高'
                 },
                 {
-                    title: '设备1断电',
-                    status: false,
-                    alarmTime: '2020-05-15 14:00:00'
+                    date: '2018-04-19 21:00:00',
+                    title: '设备3温度过高'
                 },
                 {
-                    title: '设备1故障',
-                    status: false,
-                    alarmTime: '2020-05-15 14:00:00'
-                },
-                {
-                    title: '设备2故障',
-                    status: true,
-                    alarmTime: '2020-05-15 14:00:00'
-                },
-                {
-                    title: '设备1故障',
-                    status: false,
-                    alarmTime: '2020-05-15 14:00:00'
-                },
-                {
-                    title: '设备2故障',
-                    status: true,
-                    alarmTime: '2020-05-15 14:00:00'
-                },
-                {
-                    title: '设备2故障',
-                    status: true,
-                    alarmTime: '2020-05-15 14:00:00'
-                },
-                {
-                    title: '设备1故障',
-                    status: false,
-                    alarmTime: '2020-05-15 14:00:00'
-                },
-                {
-                    title: '设备2故障',
-                    status: true,
-                    alarmTime: '2020-05-15 14:00:00'
+                    date: '2018-04-19 21:00:00',
+                    title: '设备4温度过高'
                 }
             ],
+            read: [
+                {
+                    date: '2018-04-19 20:00:00',
+                    title: '设备1温度过高'
+                }
+            ],
+            recycle: [
+                {
+                    date: '2018-04-19 20:00:00',
+                    title: '设备1温度过高'
+                }
+            ],
+            name: localStorage.getItem('ms_username'),
+            // todoList: [
+            //     {
+            //         title: '设备1温度过高',
+            //         status: false,
+            //         alarmTime: '2020-05-15 14:00:00'
+            //     },
+            //     {
+            //         title: '设备2温度过高',
+            //         status: true,
+            //         alarmTime: '2020-05-15 14:00:00'
+            //     },
+            //     {
+            //         title: '设备1断电',
+            //         status: false,
+            //         alarmTime: '2020-05-15 14:00:00'
+            //     },
+            //     {
+            //         title: '设备1故障',
+            //         status: false,
+            //         alarmTime: '2020-05-15 14:00:00'
+            //     },
+            //     {
+            //         title: '设备2故障',
+            //         status: true,
+            //         alarmTime: '2020-05-15 14:00:00'
+            //     },
+            //     {
+            //         title: '设备1故障',
+            //         status: false,
+            //         alarmTime: '2020-05-15 14:00:00'
+            //     }
+            //     // {
+            //     //     title: '设备2故障',
+            //     //     status: true,
+            //     //     alarmTime: '2020-05-15 14:00:00'
+            //     // },
+            //     // {
+            //     //     title: '设备2故障',
+            //     //     status: true,
+            //     //     alarmTime: '2020-05-15 14:00:00'
+            //     // },
+            //     // {
+            //     //     title: '设备1故障',
+            //     //     status: false,
+            //     //     alarmTime: '2020-05-15 14:00:00'
+            //     // },
+            //     // {
+            //     //     title: '设备2故障',
+            //     //     status: true,
+            //     //     alarmTime: '2020-05-15 14:00:00'
+            //     // }
+            // ],
 
             options: {
-                type: 'bar',
+                type: 'line',
                 title: {
-                    text: '最近一周设备报警数'
+                    text: '最近一月设备报警数'
                 },
                 xRorate: 25,
-                labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                labels: [
+                    '01',
+                    '02',
+                    '03',
+                    '04',
+                    '05',
+                    '06',
+                    '07',
+                    '08',
+                    '09',
+                    '10',
+                    '11',
+                    '12',
+                    '13',
+                    '14',
+                    '15',
+                    '16',
+                    '17',
+                    '18',
+                    '19',
+                    '20',
+                    '21',
+                    '22',
+                    '23',
+                    '24',
+                    '25',
+                    '26',
+                    '27',
+                    '28',
+                    '29',
+                    '30'
+                ],
                 datasets: [
                     {
-                        label: '干燥设备',
-                        data: [2, 4, 1, 2, 3, 2, 1]
-                    },
-                    {
-                        label: '液压设备',
-                        data: [1, 3, 5, 2, 7, 1, 3]
-                    },
-                    {
-                        label: '数控机床',
-                        data: [6, 2, 8, 1, 5, 7, 2]
+                        label: '设备',
+                        data: [2, 4, 1, 2, 3, 2, 1, 4, 1, 2, 3, 2, 1, 4, 1, 2, 3, 2, 1, 4, 1, 2, 3, 2, 1, 4, 1, 2, 3, 2, 1, 2]
                     }
                 ]
             },
@@ -215,26 +327,34 @@ export default {
             options3: {
                 type: 'pie',
                 title: {
-                    text: '设备种类饼状图'
+                    text: '设备地域分布'
                 },
                 legend: {
                     position: 'bottom'
                 },
-                bottomPadding:'10px',
-                bgColor: '#fbfbfb',
-                labels: ['干燥设备', '液压设备', '数控机床'],
+                bottomPadding: '10px',
+                labels: ['江苏'],
                 datasets: [
                     {
-                        data: [334, 278, 190]
+                        data: [50]
                     }
                 ]
-            }
+            },
+            status: {},
+            deviceNum: 0
         };
+    },
+    created() {
+        this.fetchDeviceNum();
+        this.fetchDeviceStatus();
     },
     components: {
         Schart
     },
     computed: {
+        unreadNum() {
+            return this.unread.length;
+        },
         role() {
             return this.name === 'admin' ? '超级管理员' : '普通用户';
         }
@@ -273,6 +393,42 @@ export default {
         //     this.$refs.bar.renderChart();
         //     this.$refs.line.renderChart();
         // }
+        //获取企业设备数量
+        fetchDeviceNum() {
+            axios({
+                method: 'get',
+                url: '/fetchDeviceNum'
+            })
+                .then(res => {
+                    this.deviceNum = res.data.data;
+                })
+                .catch();
+        },
+
+        //获取企业设备各种状态的数据
+        fetchDeviceStatus() {
+            axios({
+                method: 'get',
+                url: '/fetchDeviceStatus'
+            })
+                .then(res => {
+                    this.status = res.data;
+                })
+                .catch();
+        },
+        handleRead(index) {
+            const item = this.unread.splice(index, 1);
+            console.log(item);
+            this.read = item.concat(this.read);
+        },
+        handleDel(index) {
+            const item = this.read.splice(index, 1);
+            this.recycle = item.concat(this.recycle);
+        },
+        handleRestore(index) {
+            const item = this.recycle.splice(index, 1);
+            this.read = item.concat(this.read);
+        }
     }
 };
 </script>
@@ -280,7 +436,7 @@ export default {
 
 <style scoped>
 .el-row {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .grid-content {
