@@ -96,61 +96,41 @@ export default {
                         {
                             index: 'MaintenanceRecords',
                             title: '维修记录'
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: '2',
-                    title: '远程监控',
-                    subs: [
-                        {
-                            index: 'EquipmentMonitoring',
-                            // index: 'DeviceList',
-
-                            title: '设备监控'
-                            // subs: [
-                            //     {
-                            //         index: 'EquipmentMonitoring',
-                            //         title: '设备监控'
-                            //     },
-                            //     {
-                            //         index: 'MeasuringPointDetails',
-                            //         title: '测点详情'
-                            //     }
-                            // ]
                         },
+                        // {
+                        //     index: 'EquipmentMonitoring',
+                        //     // index: 'DeviceList',
+
+                        //     title: '设备监控'
+                        // },
                         {
                             index: 'AlarmRecord',
                             title: '报警记录'
                         }
                     ]
                 },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: 'ServiceBooklet',
-                    title: '服务手册',
-                    // subs: [
-                    //     {
-                    //         index: '3-1',
-                    //         title: '服务手册列表',
-                    //         subs: [
-                    //             {
-                    //                 index: 'ServiceBooklet',
-                    //                 title: '服务手册列表'
-                    //             },
-                    //             {
-                    //                 index: 'AddBooklet',
-                    //                 title: '添加'
-                    //             },
-                    //             {
-                    //                 index: 'ImportingBooklet',
-                    //                 title: '导入'
-                    //             }
-                    //         ]
-                    //     }
-                    // ]
-                },
+                // {
+                //     icon: 'el-icon-lx-calendar',
+                //     index: '2',
+                //     title: '远程监控',
+                //     subs: [
+                //         {
+                //             index: 'EquipmentMonitoring',
+                //             // index: 'DeviceList',
+
+                //             title: '设备监控'
+                //         },
+                //         {
+                //             index: 'AlarmRecord',
+                //             title: '报警记录'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-calendar',
+                //     index: 'ServiceBooklet',
+                //     title: '服务手册'
+                // },
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '4',
@@ -159,70 +139,70 @@ export default {
                         {
                             index: 'EnterpriseView',
                             title: '企业视图'
-                        },
+                        }
                         // {
                         //     index: 'AdminView',
                         //     title: '管理员视图'
                         // }
                     ]
                 },
-                // {
-                //     icon: 'el-icon-lx-calendar',
-                //     index: '5',
-                //     title: '基础数据管理',
-                //     subs: [
-                //         {
-                //             index: 'DataDictionary',
-                //             title: '数据字典'
-                //             // subs: [
-                //             //     {
-                //             //         index: '',
-                //             //         title: '新增'
-                //             //     }
-                //             // ]
-                //         },
-                //         {
-                //             index: 'SupplierManagement',
-                //             title: '供应商管理'
-                //             // subs: [
-                //             //     {
-                //             //         index: '',
-                //             //         title: '新增/编辑'
-                //             //     }
-                //             // ]
-                //         },
-                //         {
-                //             index: 'AlarmSetting',
-                //             title: '报警设置/阈值设置'
-                //             // subs: [
-                //             //     {
-                //             //         index: '',
-                //             //         title: '新增/编辑'
-                //             //     }
-                //             // ]
-                //         },
-                //         {
-                //             index: 'UserInfo',
-                //             title: '用户信息'
-                //             // subs: [
-                //             //     {
-                //             //         index: '',
-                //             //         title: '新增/编辑'
-                //             //     }
-                //             // ]
-                //         },
-                //         {
-                //             index: 'RoleList',
-                //             title: '角色设置'
-                //             // subs: [
-                //             //     {
-                //             //         index: '',
-                //             //         title: '添加角色'
-                //             //     }
-                //             // ]
-                //         }
-                //     ]
-                // }
+                {
+                    icon: 'el-icon-lx-calendar',
+                    index: '5',
+                    title: '基础数据管理',
+                    subs: [
+                        {
+                            index: 'DataDictionary',
+                            title: '数据字典'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '新增'
+                            //     }
+                            // ]
+                        },
+                        {
+                            index: 'SupplierManagement',
+                            title: '供应商管理'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '新增/编辑'
+                            //     }
+                            // ]
+                        },
+                        {
+                            index: 'AlarmSetting',
+                            title: '报警设置/阈值设置'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '新增/编辑'
+                            //     }
+                            // ]
+                        },
+                        {
+                            index: 'UserInfo',
+                            title: '用户信息'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '新增/编辑'
+                            //     }
+                            // ]
+                        },
+                        {
+                            index: 'RoleList',
+                            title: '角色设置'
+                            // subs: [
+                            //     {
+                            //         index: '',
+                            //         title: '添加角色'
+                            //     }
+                            // ]
+                        }
+                    ]
+                }
 
                 //dome
 
