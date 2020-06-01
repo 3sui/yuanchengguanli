@@ -7,8 +7,8 @@
  * @FilePath: \vue-manage-system\vue.config.js
  */ 
 module.exports = {
-    //baseUrl: './',
     baseUrl: './',
+    // baseUrl: 'http://localhost:8085/',
     assetsDir: 'static',
     productionSourceMap: false,
     // devServer: {

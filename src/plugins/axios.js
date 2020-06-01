@@ -17,7 +17,8 @@ import axios from "axios";
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  baseURL: 'http://127.0.0.1:9999',
+  // baseURL: 'http://127.0.0.1:9999',
+  baseURL: 'http://localhost:8085',
   // baseURL: 'http://58.216.47.110:9999',
 
   // baseURL: process.env.baseURL || process.env.apiUrl || "",

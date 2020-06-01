@@ -2,7 +2,7 @@ import request from '../utils/request';
 
 export const fetchData = (api) => {
     return request({
-        url: '/api/' + api,
+        url: api,
         method: 'get' 
     });
 };
