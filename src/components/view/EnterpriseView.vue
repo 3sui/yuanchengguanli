@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-07 15:48:38
- * @LastEditTime: 2020-05-17 14:37:54
+ * @LastEditTime: 2020-05-19 14:01:10
  * @LastEditors: Please set LastEditors
  * @Description: 企业视图
  * @FilePath: \vue-manage-system\src\components\view\EnterpriseView.vue
@@ -20,7 +20,7 @@
                 <span class="active">设备分析</span>
                 <span>行业分析</span>
                 <span>故障分析</span>
-            </div> -->
+            </div>-->
 
             <div id="devicearea">
                 <el-row :gutter="20">
@@ -33,7 +33,7 @@
                         <div class="schart-box">
                             <schart class="schart" canvasId="line2" :options="options2"></schart>
                         </div>
-                    </el-col> -->
+                    </el-col>-->
                     <el-col>
                         <div class="schart-box">
                             <schart class="schart" canvasId="line3" :options="options3"></schart>
@@ -118,7 +118,7 @@
                         :total="pageTotal"
                         @current-change="handlePageChange"
                     ></el-pagination>
-                </div> -->
+                </div>-->
             </div>
         </div>
     </div>
@@ -132,7 +132,6 @@ export default {
     name: 'EnterpriseView',
     data() {
         return {
-           
             // options1: {
             //     type: 'bar',
             //     title: {
@@ -170,12 +169,12 @@ export default {
                     text: '故障分析'
                 },
                 bgColor: '#fff',
-                labels: ['断电', '零件损耗', '操作失误'],
+                labels: ['断电', '零件损耗', '操作失误', '设备过热', '开机时长过久', '设备长时间未维护', '电压不稳定', '程序错误'],
                 datasets: [
                     {
                         label: '故障类型',
-                        data: [23, 47, 132],
-                        fillColor:['#ccc']
+                        data: [23, 47, 132, 7, 0, 8, 1, 3],
+                        fillColor: ['#ccc']
                     }
                 ],
                 width: '100%'

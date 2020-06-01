@@ -96,61 +96,41 @@ export default {
                         {
                             index: 'MaintenanceRecords',
                             title: '维修记录'
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: '2',
-                    title: '远程监控',
-                    subs: [
-                        {
-                            index: 'EquipmentMonitoring',
-                            // index: 'DeviceList',
-
-                            title: '设备监控'
-                            // subs: [
-                            //     {
-                            //         index: 'EquipmentMonitoring',
-                            //         title: '设备监控'
-                            //     },
-                            //     {
-                            //         index: 'MeasuringPointDetails',
-                            //         title: '测点详情'
-                            //     }
-                            // ]
                         },
+                        // {
+                        //     index: 'EquipmentMonitoring',
+                        //     // index: 'DeviceList',
+
+                        //     title: '设备监控'
+                        // },
                         {
                             index: 'AlarmRecord',
                             title: '报警记录'
                         }
                     ]
                 },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: 'ServiceBooklet',
-                    title: '服务手册',
-                    // subs: [
-                    //     {
-                    //         index: '3-1',
-                    //         title: '服务手册列表',
-                    //         subs: [
-                    //             {
-                    //                 index: 'ServiceBooklet',
-                    //                 title: '服务手册列表'
-                    //             },
-                    //             {
-                    //                 index: 'AddBooklet',
-                    //                 title: '添加'
-                    //             },
-                    //             {
-                    //                 index: 'ImportingBooklet',
-                    //                 title: '导入'
-                    //             }
-                    //         ]
-                    //     }
-                    // ]
-                },
+                // {
+                //     icon: 'el-icon-lx-calendar',
+                //     index: '2',
+                //     title: '远程监控',
+                //     subs: [
+                //         {
+                //             index: 'EquipmentMonitoring',
+                //             // index: 'DeviceList',
+
+                //             title: '设备监控'
+                //         },
+                //         {
+                //             index: 'AlarmRecord',
+                //             title: '报警记录'
+                //         }
+                //     ]
+                // },
+                // {
+                //     icon: 'el-icon-lx-calendar',
+                //     index: 'ServiceBooklet',
+                //     title: '服务手册'
+                // },
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '4',
@@ -159,7 +139,7 @@ export default {
                         {
                             index: 'EnterpriseView',
                             title: '企业视图'
-                        },
+                        }
                         // {
                         //     index: 'AdminView',
                         //     title: '管理员视图'

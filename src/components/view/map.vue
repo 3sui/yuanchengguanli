@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-04-28 16:25:21
- * @LastEditTime: 2020-05-17 14:25:45
+ * @LastEditTime: 2020-05-27 09:28:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \远程监控平台\vue-manage-system\src\components\page\map.vue
@@ -23,7 +23,7 @@
                             <bml-marker-clusterer :averageCenter="true">
                                 <div v-for="(marker, i) of markers" :key="i">
                                     <bm-marker
-                                        :dragging="true"
+                                        :dragging="false"
                                         animation="BMAP_ANIMATION_BOUNCE"
                                         :position="{lng: marker.lng, lat: marker.lat}"
                                         @click="infoWindowOpen(marker)"
@@ -38,6 +38,9 @@
                                             <p>公司: {{marker.company}}</p>
                                             <p>地址: {{marker.address}}</p>
                                             <p>设备ID: {{marker.deviceId}}</p>
+                                            <p>设备状态: 开机</p>
+                                            <p>设备报警: 0</p>
+
                                         </bm-info-window>
                                     </bm-marker>
                                 </div>
